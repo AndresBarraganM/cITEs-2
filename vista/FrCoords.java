@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import cites.Coordinador;
 /**
  *
  * @author PC
@@ -29,7 +31,7 @@ public class FrCoords extends javax.swing.JFrame {
         jpanelFondoRefe = new javax.swing.JPanel();
         jPanelFondoRefe = new javax.swing.JPanel();
         lblContrasenia = new javax.swing.JLabel();
-        txtFieldCorreo = new javax.swing.JTextField();
+        txtNumEmpleado = new javax.swing.JTextField();
         lblNoEmpleado = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         btnMostrarContra = new javax.swing.JButton();
@@ -53,11 +55,23 @@ public class FrCoords extends javax.swing.JFrame {
         lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblContrasenia.setText("Contraseña:");
         jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
-        jPanelFondoRefe.add(txtFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 440, 30));
+
+        txtNumEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumEmpleadoActionPerformed(evt);
+            }
+        });
+        jPanelFondoRefe.add(txtNumEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 440, 30));
 
         lblNoEmpleado.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblNoEmpleado.setText("No. de Empleado:");
         jPanelFondoRefe.add(lblNoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 30));
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 260, 30));
 
         btnMostrarContra.setText("....");
@@ -142,6 +156,51 @@ public class FrCoords extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
 
+    private void txtNumEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumEmpleadoActionPerformed
+        // TODO add your handling code here:
+         try {
+        String numControl = txtNumEmpleado.getText().trim();
+                // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        // Verificamos si el número de control contiene caracteres que no sean dígitos
+        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
+            throw new IllegalArgumentException("El número de control solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
+        }
+
+        // Si no se lanzó ninguna excepción, el número de control es válido
+        // Aquí podrías realizar otras operaciones con el número de control válido
+    } catch (IllegalArgumentException e) {
+        // Capturamos la excepción e imprimimos un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_txtNumEmpleadoActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+         try {
+        char[] passwordChars = passwordField.getPassword(); // Obtener la contraseña como un arreglo de caracteres
+
+        // Convertir el arreglo de caracteres en una cadena de caracteres
+        String password = new String(passwordChars);
+
+        // Verificar si el campo de contraseña está vacío
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException("El campo de contraseña está vacío.");
+        }
+        // Verificar si la longitud de la contraseña es suficiente
+        //int longitudMinima = 6; // Definir la longitud mínima requerida para la contraseña
+        //if (password.length() < longitudMinima) {
+           // throw new IllegalArgumentException("La contraseña debe tener al menos " + longitudMinima + " caracteres.");
+        //}
+
+        // Si no se lanzó ninguna excepción, la contraseña es válida
+        // Aquí podrías realizar otras operaciones con la contraseña válida
+    } catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,6 +252,6 @@ public class FrCoords extends javax.swing.JFrame {
     private javax.swing.JLabel lblNoEmpleado;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JTextField txtFieldCorreo;
+    private javax.swing.JTextField txtNumEmpleado;
     // End of variables declaration//GEN-END:variables
 }
