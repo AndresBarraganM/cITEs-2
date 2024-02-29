@@ -4,6 +4,9 @@
  */
 package cites;
 
+import vista.FrRegistrarAlumnos;
+import vista.FrPerfilUsuario;
+
 /**
  *
  * @author Angel Garcia Romero, Andres Salvador Barragan Muñoz

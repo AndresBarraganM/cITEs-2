@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import cites.Alumno;
 /**
  *
  * @author PC
@@ -41,7 +43,6 @@ public class FrAlumnos extends javax.swing.JFrame {
         lblCites = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));
@@ -54,11 +55,23 @@ public class FrAlumnos extends javax.swing.JFrame {
         lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblContrasenia.setText("Contraseña:");
         jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+
+        txtFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldCorreoActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(txtFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 440, 30));
 
         lblCorreo.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblCorreo.setText("Correo Institucional:");
         jPanelFondoRefe.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, 30));
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 260, 30));
 
         btnMostrarContra.setText("....");
@@ -141,6 +154,57 @@ public class FrAlumnos extends javax.swing.JFrame {
         this.dispose();
        
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
+
+    private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
+        // TODO add your handling code here:
+        try {
+        String correo = txtFieldCorreo.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        // Verificar si el campo de correo electrónico está vacío
+        if (correo.isEmpty()) {
+            throw new IllegalArgumentException("El campo de correo electrónico está vacío.");
+        }
+
+        // Verificar si el correo electrónico excede la longitud máxima permitida
+       // int longitudMaxima = 100; // Definir la longitud máxima permitida
+        //if (correo.length() > longitudMaxima) {
+          //  throw new IllegalArgumentException("La longitud del correo electrónico excede el límite permitido.");
+        //}
+
+        // Si no se lanzó ninguna excepción, el correo electrónico es válido
+        // Aquí podrías realizar otras operaciones con el correo electrónico válido
+    } catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_txtFieldCorreoActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+         try {
+        char[] passwordChars = passwordField.getPassword(); // Obtener la contraseña como un arreglo de caracteres
+
+        // Convertir el arreglo de caracteres en una cadena de caracteres
+        String password = new String(passwordChars);
+
+        // Verificar si el campo de contraseña está vacío
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException("El campo de contraseña está vacío.");
+        }
+        // Verificar si la longitud de la contraseña es suficiente
+        //int longitudMinima = 6; // Definir la longitud mínima requerida para la contraseña
+        //if (password.length() < longitudMinima) {
+           // throw new IllegalArgumentException("La contraseña debe tener al menos " + longitudMinima + " caracteres.");
+        //}
+
+        // Si no se lanzó ninguna excepción, la contraseña es válida
+        // Aquí podrías realizar otras operaciones con la contraseña válida
+    } catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments

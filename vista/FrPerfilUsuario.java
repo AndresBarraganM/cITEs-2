@@ -4,6 +4,9 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import cites.Alumno;
+import cites.Coordinador;
 /**
  *
  * @author PC
@@ -55,11 +58,23 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
         lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblContrasenia.setText("Contraseña:");
         jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
+
+        txtFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldCorreoActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(txtFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 440, 30));
 
         lblNombre.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblNombre.setText("Nombre:");
         jPanelFondoRefe.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, 30));
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 260, 30));
 
         btnMostrarContra.setText("....");
@@ -90,6 +105,12 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
         lblCorreo.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblCorreo.setText("Correo Institucional:");
         jPanelFondoRefe.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 30));
+
+        txtfieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfieldNombreActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(txtfieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 440, 30));
 
         lblUsuarioPng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/4105943-accounts-group-people-user-user-group-users_113923.png"))); // NOI18N
@@ -131,6 +152,58 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
         //Para que se cierre la ventana 
         this.dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
+
+    private void txtfieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfieldNombreActionPerformed
+        // TODO add your handling code here:
+         try {
+        String Nombre = txtfieldNombre.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        if (Nombre.isEmpty()) {
+            throw new IllegalArgumentException("El campo de nombre está vacío."); // Lanzamos una excepción si el campo está vacío
+        }
+
+        // Verificamos si el nombre contiene números
+        if (Nombre.matches(".*\\d.*")) { // Utilizamos una expresión regular para buscar dígitos
+            throw new IllegalArgumentException("El correo no puede contener números."); // Lanzamos una excepción si el nombre contiene números
+        }
+
+        // Si no se lanzó ninguna excepción, el correo es válido
+        // Aquí podrías realizar otras operaciones con el correo válido
+    } catch (IllegalArgumentException e) {
+        // Capturamos la excepción e imprimimos un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }      
+        
+    }//GEN-LAST:event_txtfieldNombreActionPerformed
+
+    private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
+        // TODO add your handling code here:
+         try {
+        String correo = txtFieldCorreo.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        // Verificar si el campo de correo electrónico está vacío
+        if (correo.isEmpty()) {
+            throw new IllegalArgumentException("El campo de correo electrónico está vacío.");
+        }
+
+        // Verificar si el correo electrónico excede la longitud máxima permitida
+       // int longitudMaxima = 100; // Definir la longitud máxima permitida
+        //if (correo.length() > longitudMaxima) {
+          //  throw new IllegalArgumentException("La longitud del correo electrónico excede el límite permitido.");
+        //}
+
+        // Si no se lanzó ninguna excepción, el correo electrónico es válido
+        // Aquí podrías realizar otras operaciones con el correo electrónico válido
+    } catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_txtFieldCorreoActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments

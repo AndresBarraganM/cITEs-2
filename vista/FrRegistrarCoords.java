@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import cites.Coordinador;
 /**
  *
  * @author PC
@@ -89,7 +91,19 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
         lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
         lblContrasenia.setText("Contraseña:");
         jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, 30));
+
+        txtFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldNombreActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(txtFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 450, 30));
+
+        txtFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldCorreoActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(txtFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 390, 30));
 
         txtFieldNumControl.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +112,12 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
             }
         });
         jPanelFondoRefe.add(txtFieldNumControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 200, 30));
+
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 30));
 
         btnMostrar.setText("..");
@@ -144,11 +164,100 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
 
     private void txtFieldNumControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNumControlActionPerformed
         // TODO add your handling code here:
+         try {
+        String numControl = txtFieldNumControl.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        // Verificamos si el número de control contiene caracteres que no sean dígitos
+        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
+            throw new IllegalArgumentException("El número de control solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
+        }
+
+        // Si no se lanzó ninguna excepción, el número de control es válido
+        // Aquí podrías realizar otras operaciones con el número de control válido
+    } catch (IllegalArgumentException e) {
+        // Capturamos la excepción e imprimimos un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_txtFieldNumControlActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void txtFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNombreActionPerformed
+        // TODO add your handling code here:
+        try {
+        String Nombre = txtFieldNombre.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        if (Nombre.isEmpty()) {
+            throw new IllegalArgumentException("El campo de nombre está vacío."); // Lanzamos una excepción si el campo está vacío
+        }
+
+        // Verificamos si el nombre contiene números
+        if (Nombre.matches(".*\\d.*")) { // Utilizamos una expresión regular para buscar dígitos
+            throw new IllegalArgumentException("El correo no puede contener números."); // Lanzamos una excepción si el nombre contiene números
+        }
+
+        // Si no se lanzó ninguna excepción, el correo es válido
+        // Aquí podrías realizar otras operaciones con el correo válido
+    } catch (IllegalArgumentException e) {
+        // Capturamos la excepción e imprimimos un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }      
+        
+        
+    }//GEN-LAST:event_txtFieldNombreActionPerformed
+
+    private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
+        // TODO add your handling code here:
+          try {
+        String correo = txtFieldCorreo.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        // Verificar si el campo de correo electrónico está vacío
+        if (correo.isEmpty()) {
+            throw new IllegalArgumentException("El campo de correo electrónico está vacío.");
+        }
+
+        // Verificar si el correo electrónico excede la longitud máxima permitida
+       // int longitudMaxima = 100; // Definir la longitud máxima permitida
+        //if (correo.length() > longitudMaxima) {
+          //  throw new IllegalArgumentException("La longitud del correo electrónico excede el límite permitido.");
+        //}
+
+        // Si no se lanzó ninguna excepción, el correo electrónico es válido
+        // Aquí podrías realizar otras operaciones con el correo electrónico válido
+    } catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_txtFieldCorreoActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+          try {
+        char[] passwordChars = jPasswordField.getPassword(); // Obtener la contraseña como un arreglo de caracteres
+
+        // Convertir el arreglo de caracteres en una cadena de caracteres
+        String password = new String(passwordChars);
+
+        // Verificar si el campo de contraseña está vacío
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException("El campo de contraseña está vacío.");
+        }
+        // Verificar si la longitud de la contraseña es suficiente
+        //int longitudMinima = 6; // Definir la longitud mínima requerida para la contraseña
+        //if (password.length() < longitudMinima) {
+           // throw new IllegalArgumentException("La contraseña debe tener al menos " + longitudMinima + " caracteres.");
+        //}
+
+        // Si no se lanzó ninguna excepción, la contraseña es válida
+        // Aquí podrías realizar otras operaciones con la contraseña válida
+    } catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments

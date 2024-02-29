@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import cites.Cita;
 /**
  *
  * @author PC
@@ -83,9 +85,19 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         jPanelFondoRefe.add(lblinstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
         CmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbCarreraActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(CmbCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 320, 30));
 
         CmbHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbHorarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbHorariosActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(CmbHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 140, 30));
 
         lblMotivos.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
@@ -93,6 +105,11 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         jPanelFondoRefe.add(lblMotivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 30));
 
         CmbMotivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbMotivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbMotivosActionPerformed(evt);
+            }
+        });
         jPanelFondoRefe.add(CmbMotivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 370, 30));
 
         lblMotivos1.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
@@ -131,6 +148,39 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         //Para que se cierre la ventana 
         this.dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
+
+    private void CmbCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbCarreraActionPerformed
+        // TODO add your handling code here:
+        if (CmbCarrera.getSelectedIndex() == -1) {
+        // Lanza una excepción indicando que ningún ninguna coordiancion de carrera fue seleccionado
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione una carrera.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+       
+        // Aquí va el resto del código que deseas ejecutar cuando se ha seleccionado una coordinacion de carrera:
+    }
+    }//GEN-LAST:event_CmbCarreraActionPerformed
+
+    private void CmbHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbHorariosActionPerformed
+        // TODO add your handling code here:
+         if (CmbHorarios.getSelectedIndex() == -1) {
+        // Lanza una excepción indicando que no se a seleccionado ningun horario 
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione el horario de preferencia  para su cita .", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+       
+        // Aquí va el resto del código que deseas ejecutar cuando se ha seleccionado horario de cita :
+    }
+    }//GEN-LAST:event_CmbHorariosActionPerformed
+
+    private void CmbMotivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbMotivosActionPerformed
+        // TODO add your handling code here:
+           if (CmbMotivos.getSelectedIndex() == -1) {
+        // Lanza una excepción indicando que no se a seleccionado el motivo de cita 
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione el motivo de su cita .", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+       
+        // Aquí va el resto del código que deseas ejecutar cuando se ha seleccionado motivo cita:
+    }
+    }//GEN-LAST:event_CmbMotivosActionPerformed
 
     /**
      * @param args the command line arguments

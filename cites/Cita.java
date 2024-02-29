@@ -4,7 +4,9 @@
  */
 package cites;
 import java.util.Date;
-
+import vista.FrInicioAlumnos;
+import vista.FrCitasRegistradas;
+import vista.FrCitasPendientes;
 /**
  *
  * @author Angel Garcia Romero, Andres Salvador Barragan Muñoz
