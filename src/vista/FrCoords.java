@@ -122,15 +122,28 @@ public class FrCoords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-         FrMenuCoords inicioCoords = new FrMenuCoords();
-        
-        //Mostramos la interfaz del menu principal
-        inicioCoords.setVisible(true);
-        
-        this.dispose();
-    }//GEN-LAST:event_BtnAceptarActionPerformed
+        String correo = txtNumEmpleado.getText().trim();
+        String contrasenia = new String(passwordField.getPassword());
+
+        // Realizar la autenticación utilizando SqlCoordinador
+        SqlCoordinador sqlCoordinador = new SqlCoordinador();
+        Coordinador coordinador = sqlCoordinador.consultarCoordinador(contrasenia, correo);
+
+        // Verificar si se encontró un coordinador con las credenciales proporcionadas
+        if (coordinador.getId() != null) {
+            // Si el coordinador existe, mostrar la interfaz del menú principal
+            FrMenuCoords inicioCoords = new FrMenuCoords();
+            inicioCoords.setVisible(true);
+            //Para que se cierre la ventana de inicio de sesión
+            this.dispose();
+        } else {
+            // Si no se encontró un coordinador, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }                            
+    //GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
