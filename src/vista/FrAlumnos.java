@@ -116,16 +116,29 @@ public class FrAlumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
+    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
-        
-        //Mostramos la interfaz del menu principal
-        menuAlumnos.setVisible(true);
-        
-        //Para que se cierre la ventana 
-        this.dispose();
-    }//GEN-LAST:event_BtnAceptarActionPerformed
+        // 03/03/2024
+        String correo = txtFieldCorreo.getText().trim();
+        String contrasenia = new String(passwordField.getPassword());
+
+        // Realizar la autenticación utilizando SqlAlumno
+        SqlAlumno sqlAlumno = new SqlAlumno();
+        Alumno alumno = sqlAlumno.consultarAlumno(contrasenia, correo);
+
+        // Verificar si se encontró un alumno con las credenciales proporcionadas
+        if (alumno.getId() != null) {
+            // Si el alumno existe, mostrar la interfaz del menú principal
+            FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+            menuAlumnos.setVisible(true);
+            //Para que se cierre la ventana de inicio de sesión
+            this.dispose();
+        } else {
+            // Si no se encontró un alumno, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } 
+    //GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
