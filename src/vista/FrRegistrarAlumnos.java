@@ -141,13 +141,65 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
-         FrMenuAlumnos menuAlumnos = new FrMenuAlumnos ();
-        
+         FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+  
+    try {
+        nombreAlumnos = txtFieldNombre.getText();
+        correoAlumnos = txtFieldCorreo.getText();
+        NoControl = txtFieldNumControl.getText();
+
+        if (txtFieldNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Indicar el Nombre del Alumno");
+            //para que en el error el focus se ponga aquí
+            focus = "nombreAlumnos";
+            return; // Se agrega un return para salir del método si hay un error
+        }
+
+        if (txtFieldCorreo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Indicar el Correo Institucional");
+            //para que en el error el focus se ponga aquí
+            focus = "correoAlumnos";
+            return; // Se agrega un return para salir del método si hay un error
+        }
+
         //Mostramos la interfaz del menu alumnos
         menuAlumnos.setVisible(true);
+
+        //Para que se cierre la ventana 
+        this.dispose();
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }                                                                         
+    }                                          
+    
+   
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        FrMenuPrincipal inicio = new FrMenuPrincipal();
+        
+        //Mostramos la interfaz del menu principal
+        inicio.setVisible(true);
         
         //Para que se cierre la ventana 
         this.dispose();
+    }                                           
+
+    private void txtFieldNumControlActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+        // TODO add your handling code here:
+         try {
+        String numControl = txtFieldNumControl.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
+
+        // Verificamos si el número de control contiene caracteres que no sean dígitos
+        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
+            throw new IllegalArgumentException("El número de control solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
+        }
+
+        // Si no se lanzó ninguna excepción, el número de control es válido
+        // Aquí podrías realizar otras operaciones con el número de control válido
+    } catch (IllegalArgumentException e) {
+        // Capturamos la excepción e imprimimos un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
