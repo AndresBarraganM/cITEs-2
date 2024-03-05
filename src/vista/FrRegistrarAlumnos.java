@@ -139,38 +139,52 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
+   private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-         FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
-  
-    try {
-        nombreAlumnos = txtFieldNombre.getText();
-        correoAlumnos = txtFieldCorreo.getText();
-        NoControl = txtFieldNumControl.getText();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+      // 05-03-2024
+        try {
+            nombreAlumnos = txtFieldNombre.getText();
+            correoAlumnos = txtFieldCorreo.getText();
+            numControl = txtFieldNumControl.getText();
 
-        if (txtFieldNombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error: Indicar el Nombre del Alumno");
-            //para que en el error el focus se ponga aquí
-            focus = "nombreAlumnos";
-            return; // Se agrega un return para salir del método si hay un error
-        }
+            if (txtFieldNombre.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error: Indicar el Nombre del Alumno");
+                //para que en el error el focus se ponga aquí
+                focus = "nombreAlumnos";
+                return; // Se agrega un return para salir del método si hay un error
+            }
 
-        if (txtFieldCorreo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error: Indicar el Correo Institucional");
-            //para que en el error el focus se ponga aquí
-            focus = "correoAlumnos";
-            return; // Se agrega un return para salir del método si hay un error
-        }
+            if (txtFieldCorreo.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error: Indicar el Correo Institucional");
+                //para que en el error el focus se ponga aquí
+                focus = "correoAlumnos";
+                return; // Se agrega un return para salir del método si hay un error
+            }
 
-        //Mostramos la interfaz del menu alumnos
-        menuAlumnos.setVisible(true);
+            if (txtFieldNumControl.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Error: Indicar el Numero de Control");
+                //para que en el error el focus se ponga aquí
+                focus = "numControl";
+                return; // Se agrega un return para salir del método si hay un error
+            }
 
-        //Para que se cierre la ventana 
-        this.dispose();
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }                                                                         
-    }                                          
+            //Mostramos la interfaz del menu alumnos
+            menuAlumnos.setVisible(true);
+
+            //Para que se cierre la ventana 
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            switch(focus){
+                case "nombreAlumnos": txtFieldNombre.grabFocus(); break;
+                case "correoAlumno": txtFieldCorreo.grabFocus(); break;
+                case "numControl": txtFieldNumControl.grabFocus(); break;
+                default: break;
+            }
+        }                                                                         
+          
+    }                                       
     
    
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -341,6 +355,10 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         });
     }
 
+    // Variables Globales
+    String focus="", nombreAlumnos="", correoAlumnos="", numControl="", password="";
+    char[] passwordChars;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
     private javax.swing.JButton BtnRegresar;
