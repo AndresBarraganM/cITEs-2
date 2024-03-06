@@ -92,27 +92,27 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuPrincipal inicio = new FrMenuPrincipal();
+        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
 
         //Mostramos la interfaz del menu principal
-        inicio.setVisible(true);
+        menuAlumno.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
-    }//GEN-LAST:event_BtnRegresarActionPerformed
+    }                                           
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
+    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
 
         //Mostramos la interfaz del menu principal
-        menuAlumnos.setVisible(true);
+        menuAlumno.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
-    }//GEN-LAST:event_BtnAceptarActionPerformed
+    }                                         
 
     /**
      * @param args the command line arguments
