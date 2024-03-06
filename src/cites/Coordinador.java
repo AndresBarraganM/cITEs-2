@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cites;
+import vista.FrRegistrarCoords;
+import vista.FrPerfilUsuario;
+import vista.FrCoords;
 
 /**
  *
@@ -17,15 +20,16 @@ public class Coordinador {
     int numeroControl;
     String nombreCompleto;
     String correoInstitucional;
-    String Cargo;
+    String cargo;
     String contrasena;
     String id;
     
     //constructor
-    public Coordinador(int numeroControl,String nombreCompleto,  String correoInstitucional,String contraseña, String id ){
+    public Coordinador(int numeroControl,String nombreCompleto,  String correoInstitucional,String cargo, String contrasena, String id ){
         this.numeroControl= numeroControl;
         this.nombreCompleto= nombreCompleto;
         this.correoInstitucional= correoInstitucional;
+        this.cargo = cargo;
         this.contrasena= contrasena;
         this.id= id;
     }
@@ -77,13 +81,11 @@ public class Coordinador {
     }
 
     public String getCargo() {
-        return Cargo;
+        return cargo;
     }
 
-    public void setCargo(String Cargo) {
-        this.Cargo = Cargo;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
-
-    
     
 }
