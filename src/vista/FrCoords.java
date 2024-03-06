@@ -122,10 +122,10 @@ public class FrCoords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        String correo = txtNumEmpleado.getText().trim();
-        String contrasenia = new String(passwordField.getPassword());
+         correo = txtNumEmpleado.getText().trim();
+         contrasenia = new String(passwordField.getPassword());
 
         // Realizar la autenticación utilizando SqlCoordinador
         SqlCoordinador sqlCoordinador = new SqlCoordinador();
@@ -142,20 +142,15 @@ public class FrCoords extends javax.swing.JFrame {
             // Si no se encontró un coordinador, mostrar un mensaje de error
             JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }                            
-    //GEN-LAST:event_BtnAceptarActionPerformed
+    }                                          
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        
-         FrMenuPrincipal inicio = new FrMenuPrincipal();
-        
-        //Mostramos la interfaz del menu principal
-        inicio.setVisible(true);
-        
-        //Para que se cierre la ventana 
-        this.dispose();
-    }//GEN-LAST:event_BtnRegresarActionPerformed
+            FrMenuPrincipal inicio = new FrMenuPrincipal();
+            inicio.setVisible(true);
+            //Para que se cierre la ventana de inicio de sesión
+            this.dispose();
+    }                                           
 
     private void btnRegistrarmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarmeActionPerformed
         // TODO add your handling code here:
@@ -169,10 +164,10 @@ public class FrCoords extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
 
-    private void txtNumEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumEmpleadoActionPerformed
-         // TODO add your handling code here:
+     private void txtNumEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
          try {
-        String numControl = txtNumEmpleado.getText().trim();
+        numControl = txtNumEmpleado.getText().trim();
                 // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
 
         // Verificamos si el número de control contiene caracteres que no sean dígitos
@@ -186,9 +181,9 @@ public class FrCoords extends javax.swing.JFrame {
         // Capturamos la excepción e imprimimos un mensaje de error
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_txtNumEmpleadoActionPerformed
+    }                                              
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
          try {
         char[] passwordChars = passwordField.getPassword(); // Obtener la contraseña como un arreglo de caracteres
@@ -212,9 +207,8 @@ public class FrCoords extends javax.swing.JFrame {
         // Capturar la excepción e imprimir un mensaje de error
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_passwordFieldActionPerformed
+    }                                             
 
- 
     
     /**
      * @param args the command line arguments
@@ -253,6 +247,9 @@ public class FrCoords extends javax.swing.JFrame {
             }
         });
     }
+
+      // Variables globales
+    String correo="", contrasenia="", numControl="";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
