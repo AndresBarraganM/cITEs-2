@@ -141,10 +141,10 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
-        FrMenuPrincipal inicio = new FrMenuPrincipal();
+       FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
         
         //Mostramos la interfaz del menu principal
-        inicio.setVisible(true);
+        menuAlumnos.setVisible(true);
         
         //Para que se cierre la ventana 
         this.dispose();
