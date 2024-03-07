@@ -102,16 +102,16 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuPrincipal inicio = new FrMenuPrincipal();
+        FrMenuCoords menuCoords = new FrMenuCoords();
         
         //Mostramos la interfaz del menu principal
-        inicio.setVisible(true);
+        menuCoords.setVisible(true);
         
         //Para que se cierre la ventana 
         this.dispose();
-    }//GEN-LAST:event_BtnRegresarActionPerformed
+    }  
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
