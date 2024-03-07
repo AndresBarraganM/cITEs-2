@@ -94,10 +94,10 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
+        FrMenuCoords menuCoords = new FrMenuCoords();
 
         //Mostramos la interfaz del menu principal
-        menuAlumno.setVisible(true);
+        menuCoords.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
@@ -105,14 +105,14 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
+        FrMenuCoords menuCoords = new FrMenuCoords();
 
         //Mostramos la interfaz del menu principal
-        menuAlumno.setVisible(true);
+        menuCoords.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
-    }                                         
+    }                                                         
 
     /**
      * @param args the command line arguments
