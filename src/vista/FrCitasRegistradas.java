@@ -92,12 +92,12 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+      private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
 
         //Mostramos la interfaz del menu principal
-        menuCoords.setVisible(true);
+        menuAlumnos.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
@@ -105,14 +105,14 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
 
         //Mostramos la interfaz del menu principal
-        menuCoords.setVisible(true);
+        menuAlumnos.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
-    }                                                         
+    }                                                              
 
     /**
      * @param args the command line arguments
