@@ -15,18 +15,24 @@ import java.util.Date;
 public class Cita {
     
     String id_cita;
-    Date fecha;
-    Date hora;
+    int anio;
+    int mes;
+    int dia;
+    
+    int hora; 
+    //Esta en hora militar ej. 8:30 es 830
     String citadorId;
     String CitadorDocente;
     String motivo;
     String estado;
     
     //constructor
-    public Cita(String id_cita,Date fecha, Date hora, String citadorId, String CitadorDocente, String motivo, String estado){
+    public Cita(String id_cita, int anio, int mes, int dia, int hora, String citadorId, String CitadorDocente, String motivo, String estado){
     this.id_cita= id_cita;
-    this.fecha = fecha;
     this.hora = hora;
+    this.anio = anio;
+    this.mes = mes;
+    this.dia = dia;
     this.citadorId=citadorId;
     this.CitadorDocente= CitadorDocente;
     this.motivo= motivo;
@@ -46,19 +52,36 @@ public class Cita {
         this.id_cita = id_cita;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
-    public Date getHora() {
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    
+    public int getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(int hora) {
         this.hora = hora;
     }
 
@@ -92,6 +115,11 @@ public class Cita {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Cita{" + "id_cita=" + id_cita + ", anio=" + anio + ", mes=" + mes + ", dia=" + dia + ", hora=" + hora + ", citadorId=" + citadorId + ", CitadorDocente=" + CitadorDocente + ", motivo=" + motivo + ", estado=" + estado + '}';
     }
     
     

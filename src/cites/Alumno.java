@@ -18,6 +18,8 @@ public class Alumno {
     String correoInstitucional;
     String contrasena;
     String id;
+    String grupo;
+    
     //constructor
     public Alumno(int numeroControl,String nombreCompleto,  String correoInstitucional,String contraseña, String id ){
         this.numeroControl= numeroControl;
@@ -66,12 +68,25 @@ public class Alumno {
         this.contrasena = contrasena;
     }
 
+    @Override
+    public String toString() {
+        return "Alumno{" + "numeroControl=" + numeroControl + ", nombreCompleto=" + nombreCompleto + ", correoInstitucional=" + correoInstitucional + ", contrasena=" + contrasena + ", id=" + id + '}';
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 
   
