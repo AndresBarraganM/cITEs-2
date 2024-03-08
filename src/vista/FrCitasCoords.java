@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-import cites.Cita;
+import database.SqlCitas;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author PC
@@ -15,6 +16,9 @@ public class FrCitasCoords extends javax.swing.JFrame {
      */
     public FrCitasCoords() {
         initComponents();
+        SqlCitas sqlCitas = new SqlCitas();
+        DefaultTableModel modeloTabla = sqlCitas.setTable();
+        jTable1.setModel(modeloTabla);
     }
 
     /**
