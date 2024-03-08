@@ -86,6 +86,7 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
         lblBienvenida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));

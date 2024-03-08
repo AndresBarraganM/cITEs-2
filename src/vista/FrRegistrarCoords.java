@@ -40,11 +40,12 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
         txtFieldNombre = new javax.swing.JTextField();
         txtFieldCorreo = new javax.swing.JTextField();
         txtFieldNumControl = new javax.swing.JTextField();
-        jPasswordField = new javax.swing.JPasswordField();
-        btnMostrar = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
+        btnMostrarContra = new javax.swing.JButton();
         lblCites = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(15, 35, 50));
@@ -113,20 +114,20 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
         });
         jPanelFondoRefe.add(txtFieldNumControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 200, 30));
 
-        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 30));
+        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 30));
 
-        btnMostrar.setText("..");
-        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrarContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/3844476-eye-see-show-view-watch_110339.png"))); // NOI18N
+        btnMostrarContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarActionPerformed(evt);
+                btnMostrarContraActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 30, -1));
+        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 40, 30));
 
         jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 860, 580));
 
@@ -142,13 +143,43 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
-         FrMenuCoords inicioCoords = new FrMenuCoords ();
         
-        //Mostramos la interfaz del menu principal
+        FrMenuCoords inicioCoords = new FrMenuCoords ();
+        
+        try {
+        String Nombre = txtFieldNombre.getText().trim();
+        String numControl = txtFieldNumControl.getText().trim();
+        String correo = txtFieldCorreo.getText().trim();
+        char[] passwordChars = passwordField.getPassword();
+        
+        String password = new String(passwordChars);
+
+        if (Nombre.isEmpty()) {
+            throw new IllegalArgumentException("El campo de nombre está vacío."); // Lanzamos una excepción si el campo está vacío
+        }
+
+        // Verificamos si el nombre contiene números
+        if (Nombre.matches(".*\\d.*")) { // Utilizamos una expresión regular para buscar dígitos
+            throw new IllegalArgumentException("El correo no puede contener números."); // Lanzamos una excepción si el nombre contiene números
+        }
+        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
+            throw new IllegalArgumentException("El número de control solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
+        }
+        if (correo.isEmpty()) {
+            throw new IllegalArgumentException("El campo de correo electrónico está vacío.");
+        }
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException("El campo de contraseña está vacío.");
+        }
         inicioCoords.setVisible(true);
         
         //Para que se cierre la ventana 
         this.dispose();
+        } catch (IllegalArgumentException e) {
+        // Capturamos la excepción e imprimimos un mensaje de error
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
@@ -162,96 +193,36 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
+    
     private void txtFieldNumControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNumControlActionPerformed
-        try {
-        String numControl = txtFieldNumControl.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
 
-        // Verificamos si el número de control contiene caracteres que no sean dígitos
-        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
-            throw new IllegalArgumentException("El número de control solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
-        }
-
-        // Si no se lanzó ninguna excepción, el número de control es válido
-        // Aquí podrías realizar otras operaciones con el número de control válido
-    } catch (IllegalArgumentException e) {
-        // Capturamos la excepción e imprimimos un mensaje de error
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_txtFieldNumControlActionPerformed
 
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMostrarActionPerformed
+    private void btnMostrarContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarContraActionPerformed
+    
+    if(btnMostrarContra.getText().equals("Mostrar")) {
+        passwordField.setEchoChar((char)0); // Mostrar la contraseña
+        
+        btnMostrarContra.setText("Ocultar");
+    } 
+    else {
+        passwordField.setEchoChar('*'); // Ocultar la contraseña
+        btnMostrarContra.setText("Mostrar");
+    }
+    }//GEN-LAST:event_btnMostrarContraActionPerformed
 
     private void txtFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNombreActionPerformed
-        try {
-        String Nombre = txtFieldNombre.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
-
-        if (Nombre.isEmpty()) {
-            throw new IllegalArgumentException("El campo de nombre está vacío."); // Lanzamos una excepción si el campo está vacío
-        }
-
-        // Verificamos si el nombre contiene números
-        if (Nombre.matches(".*\\d.*")) { // Utilizamos una expresión regular para buscar dígitos
-            throw new IllegalArgumentException("El correo no puede contener números."); // Lanzamos una excepción si el nombre contiene números
-        }
-
-        // Si no se lanzó ninguna excepción, el correo es válido
-        // Aquí podrías realizar otras operaciones con el correo válido
-    } catch (IllegalArgumentException e) {
-        // Capturamos la excepción e imprimimos un mensaje de error
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }      
+    
     }//GEN-LAST:event_txtFieldNombreActionPerformed
 
     private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
-         try {
-        String correo = txtFieldCorreo.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
 
-        // Verificar si el campo de correo electrónico está vacío
-        if (correo.isEmpty()) {
-            throw new IllegalArgumentException("El campo de correo electrónico está vacío.");
-        }
-
-        // Verificar si el correo electrónico excede la longitud máxima permitida
-       // int longitudMaxima = 100; // Definir la longitud máxima permitida
-        //if (correo.length() > longitudMaxima) {
-          //  throw new IllegalArgumentException("La longitud del correo electrónico excede el límite permitido.");
-        //}
-
-        // Si no se lanzó ninguna excepción, el correo electrónico es válido
-        // Aquí podrías realizar otras operaciones con el correo electrónico válido
-    } catch (IllegalArgumentException e) {
-        // Capturar la excepción e imprimir un mensaje de error
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
     }//GEN-LAST:event_txtFieldCorreoActionPerformed
 
-    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
-        try {
-        char[] passwordChars = jPasswordField.getPassword(); // Obtener la contraseña como un arreglo de caracteres
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
 
-        // Convertir el arreglo de caracteres en una cadena de caracteres
-        String password = new String(passwordChars);
-
-        // Verificar si el campo de contraseña está vacío
-        if (password.isEmpty()) {
-            throw new IllegalArgumentException("El campo de contraseña está vacío.");
-        }
-        // Verificar si la longitud de la contraseña es suficiente
-        //int longitudMinima = 6; // Definir la longitud mínima requerida para la contraseña
-        //if (password.length() < longitudMinima) {
-           // throw new IllegalArgumentException("La contraseña debe tener al menos " + longitudMinima + " caracteres.");
-        //}
-
-        // Si no se lanzó ninguna excepción, la contraseña es válida
-        // Aquí podrías realizar otras operaciones con la contraseña válida
-    } catch (IllegalArgumentException e) {
-        // Capturar la excepción e imprimir un mensaje de error
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_jPasswordFieldActionPerformed
-
+    }//GEN-LAST:event_passwordFieldActionPerformed
+    //HASTA AQUI
     /**
      * @param args the command line arguments
      */
@@ -297,9 +268,8 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
     private javax.swing.JButton BtnRegresar;
-    private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnMostrarContra;
     private javax.swing.JPanel jPanelFondoRefe;
-    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JPanel jpanelFondoRefe;
     private javax.swing.JLabel lblCites;
     private javax.swing.JLabel lblContrasenia;
@@ -307,6 +277,7 @@ public class FrRegistrarCoords extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNumEmpleado;
     private javax.swing.JLabel lblinstruccion;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField txtFieldCorreo;
     private javax.swing.JTextField txtFieldNombre;
     private javax.swing.JTextField txtFieldNumControl;
