@@ -35,6 +35,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(15, 35, 50));
@@ -102,16 +103,16 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords();
+        FrMenuPrincipal inicio = new FrMenuPrincipal();
         
         //Mostramos la interfaz del menu principal
-        menuCoords.setVisible(true);
+        inicio.setVisible(true);
         
         //Para que se cierre la ventana 
         this.dispose();
-    }  
+    }//GEN-LAST:event_BtnRegresarActionPerformed
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
