@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -45,6 +40,7 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         lblCites = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));
@@ -85,7 +81,7 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         lblinstruccion.setText("Rellene sus datos para agendar una cita ");
         jPanelFondoRefe.add(lblinstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
-        CmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas Computacionales - Sandra", "Item 2", "Item 3", "Item 4" }));
         CmbCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbCarreraActionPerformed(evt);
@@ -93,7 +89,7 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         });
         jPanelFondoRefe.add(CmbCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 320, 30));
 
-        CmbHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9:00-10:00", "Item 2", "Item 3", "Item 4" }));
         CmbHorarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbHorariosActionPerformed(evt);
@@ -159,7 +155,7 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
        
         // Aquí va el resto del código que deseas ejecutar cuando se ha seleccionado una coordinacion de carrera:
     }
-    }//GEN-LAST:event_CmbCarreraActionPerformed
+                                              
     }//GEN-LAST:event_CmbCarreraActionPerformed
 
     private void CmbHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbHorariosActionPerformed
@@ -220,6 +216,7 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
