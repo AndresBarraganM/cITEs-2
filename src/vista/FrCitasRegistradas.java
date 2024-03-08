@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-import cites.Cita;
+
 /**
  *
  * @author PC
@@ -35,6 +35,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));
@@ -68,21 +69,19 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         });
         jpanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
 
-        jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre del coordinador", "ID. Cita", "Coordinacion", "Estado", "Motivo", "Hora", "Fecha"
+                "Nombre", "ID", "No. de Control", "Carrera", "Horario"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -94,27 +93,27 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
 
         //Mostramos la interfaz del menu principal
-        menuAlumnos.setVisible(true);
-
-        //Para que se cierre la ventana 
-        this.dispose();
-    }//GEN-LAST:event_BtnRegresarActionPerformed
-
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
-        // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
-
-        //Mostramos la interfaz del menu principal
-        menuAlumnos.setVisible(true);
+        menuAlumno.setVisible(true);
 
         //Para que se cierre la ventana
         this.dispose();
-    }//GEN-LAST:event_BtnAceptarActionPerformed
+    }                                           
+
+    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
+
+        //Mostramos la interfaz del menu principal
+        menuAlumno.setVisible(true);
+
+        //Para que se cierre la ventana
+        this.dispose();
+    }                                         
 
     /**
      * @param args the command line arguments

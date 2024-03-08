@@ -4,6 +4,8 @@
  */
 package vista;
 
+import cites.Coordinador;
+import database.SqlCoordinador;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,11 +40,12 @@ public class FrCoords extends javax.swing.JFrame {
         BtnAceptar = new javax.swing.JButton();
         BtnRegresar = new javax.swing.JButton();
         lblRegistro = new javax.swing.JLabel();
-        btnRegistrarme = new javax.swing.JButton();
         lblBienvenida = new javax.swing.JLabel();
+        jLabelClick = new javax.swing.JLabel();
         lblCites = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanelFondoRefe.setBackground(new java.awt.Color(15, 35, 50));
@@ -74,8 +77,15 @@ public class FrCoords extends javax.swing.JFrame {
         });
         jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 260, 30));
 
-        btnMostrarContra.setText("....");
-        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 30, 30));
+        btnMostrarContra.setBackground(new java.awt.Color(242, 242, 242));
+        btnMostrarContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/3844476-eye-see-show-view-watch_110339.png"))); // NOI18N
+        btnMostrarContra.setBorderPainted(false);
+        btnMostrarContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarContraActionPerformed(evt);
+            }
+        });
+        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 30, 30));
 
         BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         BtnAceptar.setText("ACEPTAR");
@@ -95,20 +105,22 @@ public class FrCoords extends javax.swing.JFrame {
         });
         jPanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 150, 50));
 
-        lblRegistro.setText("¿No esta registrado? Registrese Aqui -------->");
-        jPanelFondoRefe.add(lblRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 506, -1, 30));
-
-        btnRegistrarme.setText("Registrarme");
-        btnRegistrarme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarmeActionPerformed(evt);
-            }
-        });
-        jPanelFondoRefe.add(btnRegistrarme, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
+        lblRegistro.setText("¿No esta registrado? Registrese Aqui ");
+        jPanelFondoRefe.add(lblRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, 30));
 
         lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblBienvenida.setText("¡BIENVENIDO COORDINADOR!");
         jPanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+
+        jLabelClick.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelClick.setForeground(new java.awt.Color(102, 102, 255));
+        jLabelClick.setText("Click Aqui");
+        jLabelClick.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelClickMouseClicked(evt);
+            }
+        });
+        jPanelFondoRefe.add(jLabelClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, 30));
 
         jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 860, 560));
 
@@ -122,25 +134,68 @@ public class FrCoords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabelClickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelClickMouseClicked
+        // TODO add your handling code here:
+        FrRegistrarCoords registroCoords = new FrRegistrarCoords();
+        
+        //Mostramos la interfaz del menu principal
+        registroCoords.setVisible(true);
+        
+        //Para que se cierre la ventana 
+        this.dispose();
+    }//GEN-LAST:event_jLabelClickMouseClicked
+
+    private void btnMostrarContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarContraActionPerformed
+        // TODO add your handling code here:
+    if(btnMostrarContra.getText().equals("Mostrar")) {
+        passwordField.setEchoChar((char)0); // Mostrar la contraseña
+        
+        btnMostrarContra.setText("Ocultar");
+    } 
+    else {
+        passwordField.setEchoChar('*'); // Ocultar la contraseña
+        btnMostrarContra.setText("Mostrar");
+    }
+    }//GEN-LAST:event_btnMostrarContraActionPerformed
+
      private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-         correo = txtNumEmpleado.getText().trim();
-         contrasenia = new String(passwordField.getPassword());
+        try{
+            
+        numControl = txtNumEmpleado.getText().trim();
+        contrasenia = new String(passwordField.getPassword());
+        char[] passwordChars = passwordField.getPassword();
+        
+        String password = new String(passwordChars);
+        
+        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
+            throw new IllegalArgumentException("El número de empleado solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
+        }
+        if (password.isEmpty()) {
+            throw new IllegalArgumentException("El campo de contraseña está vacío.");
+        }
 
-        // Realizar la autenticación utilizando SqlCoordinador
+        // Realizar la autenticación utilizando SqlAlumno
         SqlCoordinador sqlCoordinador = new SqlCoordinador();
-        Coordinador coordinador = sqlCoordinador.consultarCoordinador(contrasenia, correo);
+        Coordinador coordinador = sqlCoordinador.consultarCoordinador(contrasenia, numControl);
 
-        // Verificar si se encontró un coordinador con las credenciales proporcionadas
+        // Verificar si se encontró un alumno con las credenciales proporcionadas
         if (coordinador.getId() != null) {
             // Si el coordinador existe, mostrar la interfaz del menú principal
             FrMenuCoords inicioCoords = new FrMenuCoords();
             inicioCoords.setVisible(true);
             //Para que se cierre la ventana de inicio de sesión
             this.dispose();
-        } else {
+        } 
+        else {
             // Si no se encontró un coordinador, mostrar un mensaje de error
             JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+}
+        catch (IllegalArgumentException e) {
+        // Capturar la excepción e imprimir un mensaje de error
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }                                          
 
@@ -152,62 +207,11 @@ public class FrCoords extends javax.swing.JFrame {
             this.dispose();
     }                                           
 
-    private void btnRegistrarmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarmeActionPerformed
-        // TODO add your handling code here:
-        FrRegistrarCoords registrarCoords = new FrRegistrarCoords();
-        
-        //Mostramos la interfaz del menu principal
-        registrarCoords.setVisible(true);
-        
-        //Para que se cierre la ventana 
-        this.dispose();
-        
-    }//GEN-LAST:event_btnRegistrarmeActionPerformed
-
      private void txtNumEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
-         try {
-        numControl = txtNumEmpleado.getText().trim();
-                // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
-
-        // Verificamos si el número de control contiene caracteres que no sean dígitos
-        if (!numControl.matches("[0-9]+")) { // Utilizamos una expresión regular para verificar si hay caracteres que no sean dígitos
-            throw new IllegalArgumentException("El número de control solo puede contener números."); // Lanzamos una excepción si se encuentran caracteres que no sean dígitos
-        }
-
-        // Si no se lanzó ninguna excepción, el número de control es válido
-        // Aquí podrías realizar otras operaciones con el número de control válido
-    } catch (IllegalArgumentException e) {
-        // Capturamos la excepción e imprimimos un mensaje de error
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
     }                                              
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
-         try {
-        char[] passwordChars = passwordField.getPassword(); // Obtener la contraseña como un arreglo de caracteres
-
-        // Convertir el arreglo de caracteres en una cadena de caracteres
-        String password = new String(passwordChars);
-
-        // Verificar si el campo de contraseña está vacío
-        if (password.isEmpty()) {
-            throw new IllegalArgumentException("El campo de contraseña está vacío.");
-        }
-        // Verificar si la longitud de la contraseña es suficiente
-        //int longitudMinima = 6; // Definir la longitud mínima requerida para la contraseña
-        //if (password.length() < longitudMinima) {
-           // throw new IllegalArgumentException("La contraseña debe tener al menos " + longitudMinima + " caracteres.");
-        //}
-
-        // Si no se lanzó ninguna excepción, la contraseña es válida
-        // Aquí podrías realizar otras operaciones con la contraseña válida
-    } catch (IllegalArgumentException e) {
-        // Capturar la excepción e imprimir un mensaje de error
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }                                             
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {}                                             
 
     
     /**
@@ -255,7 +259,7 @@ public class FrCoords extends javax.swing.JFrame {
     private javax.swing.JButton BtnAceptar;
     private javax.swing.JButton BtnRegresar;
     private javax.swing.JButton btnMostrarContra;
-    private javax.swing.JButton btnRegistrarme;
+    private javax.swing.JLabel jLabelClick;
     private javax.swing.JPanel jPanelFondoRefe;
     private javax.swing.JPanel jpanelFondoRefe;
     private javax.swing.JLabel lblBienvenida;
