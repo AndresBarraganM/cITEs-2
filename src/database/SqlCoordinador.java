@@ -37,7 +37,7 @@ public class SqlCoordinador extends SqlConector {
             if(res>0){
                 System.out.println("Coordinador Registrado");
             }
-        } catch(Exception e){
+        } catch(SQLException e){
             System.err.println("Error al crear coordinador en bd: "+e.getMessage());
         } finally{
             this.desconectar();
@@ -75,7 +75,45 @@ public class SqlCoordinador extends SqlConector {
             if (e.getMessage().equals("No alumno encontrado")){
                 System.out.println("No alumno encontrado con estos parametros");
             } else{
-                System.err.println("Error al consultar datos de alumno: "+e);
+                System.err.println("Error al consultar datos de coordinador: "+e);
+            }
+        } finally{
+            //this.desconectar();
+            this.close();
+        }
+        return coordinador;
+    }
+    
+    public Coordinador consultarCoordinadorPorId(String idCoordinador){ //por areglar
+        //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
+        Coordinador coordinador = new Coordinador();
+        String sqlSelect = "SELECT * FROM Coordinador WHERE id_coordinador = (?)";
+
+        
+        try {
+            this.conectar();
+            PreparedStatement PS = this.getConnection().prepareStatement(sqlSelect);
+            PS.setString(1,idCoordinador);
+            RS = PS.executeQuery();
+           
+            if( !RS.isBeforeFirst()){
+                throw new Exception("No coordinador encotnrado con estas credenciales");
+            }
+            
+            RS.next();
+            coordinador.setId(String.valueOf(RS.getInt(1)));  //No creo necesario cambiar la id
+            coordinador.setNombreCompleto(RS.getString(2));
+            coordinador.setCargo(RS.getString(3));
+            coordinador.setCorreoInstitucional(RS.getString(4));
+            coordinador.setNumeroControl(Integer.parseInt(RS.getString(5)));
+            coordinador.setContrasena(RS.getString(6));
+            
+            
+        } catch(Exception e){
+            if (e.getMessage().equals("No alumno encontrado")){
+                System.out.println("No alumno encontrado con estos parametros");
+            } else{
+                System.err.println("Error al consultar datos de coordinador: "+e);
             }
         } finally{
             //this.desconectar();
@@ -83,6 +121,7 @@ public class SqlCoordinador extends SqlConector {
             return coordinador;
         }
     }
+    
     
     public void modificarCoordinador(Coordinador coordinador){ 
         //Ocupa un objeto coordinador con el que sobre escribir el campo de la base de datos

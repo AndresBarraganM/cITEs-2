@@ -88,6 +88,44 @@ public class SqlAlumno extends SqlConector {
             return alumno;
        }
     }
+     
+    public Alumno consultarAlumnoPorId (int id){
+        //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
+        Alumno alumno = new Alumno();
+        String sqlSelect = "SELECT * FROM Alumnos WHERE id_usuario = (?)";
+            
+        
+        try {
+            this.conectar();            
+            PreparedStatement PS = this.getConnection().prepareStatement(sqlSelect);
+            PS.setInt(1,id);
+            RS = PS.executeQuery();
+            
+
+            if( !RS.isBeforeFirst()){ //No encontro alumno
+                throw new Exception("No alumno encontrado con estas credenciales");
+            }
+ 
+            RS.next();
+            alumno.setId(String.valueOf(RS.getInt(1)));
+            alumno.setNombreCompleto( RS.getString(2));
+            alumno.setNumeroControl( Integer.parseInt(RS.getString(3)));
+            alumno.setContrasena(RS.getString(4));
+            alumno.setCorreoInstitucional(RS.getString(5));
+            
+        } catch (Exception e){
+            if (e.getMessage().equals("No alumno encontrado")){
+                System.out.println("No alumno encontrado con estos parametros");
+            } else{
+                System.err.println("Error al consultar datos de alumno: "+e);
+            }
+        } finally{
+            
+            //this.desconectar();
+            this.close();
+            return alumno;
+       }
+    }
     
     public void modificarAlumno(Alumno alumno){
         //Ocupa un objeto alumno con el que sobre escribir el campo de la base de datos
