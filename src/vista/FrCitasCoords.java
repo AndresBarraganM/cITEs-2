@@ -17,7 +17,7 @@ public class FrCitasCoords extends javax.swing.JFrame {
     public FrCitasCoords() {
         initComponents();
         SqlCitas sqlCitas = new SqlCitas();
-        DefaultTableModel modeloTabla = sqlCitas.setTable();
+        DefaultTableModel modeloTabla = sqlCitas.setTableForCoordinador();
         jTable1.setModel(modeloTabla);
     }
 
