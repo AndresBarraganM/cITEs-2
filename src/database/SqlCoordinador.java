@@ -7,6 +7,7 @@ package database;
 import cites.Coordinador;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -120,6 +121,46 @@ public class SqlCoordinador extends SqlConector {
             this.close();
             return coordinador;
         }
+    }
+    
+    public ArrayList<String> mirarOpcionesCoordinacion(){
+        String sqlSelect = "SELECT id_coordinador,nombre,cargo FROM Coordinador;";
+        
+        ArrayList<String>  salida = new ArrayList<String>();
+        
+        
+        try {
+            this.conectar();
+            PreparedStatement PS = this.getConnection().prepareStatement(sqlSelect);
+            RS = PS.executeQuery();
+           
+            if( !RS.isBeforeFirst()){
+                throw new Exception("No coordinador encotnrado con estas credenciales");
+            }
+            
+            //Pasar a objeto salida
+            while(RS.next()){
+                salida.add(
+                 RS.getString(1) //ID
+                        +"-"+
+                 RS.getString(2) //Nombre
+                         +"-"+
+                 RS.getString(3) //Cargo
+                );
+            }
+            
+        } catch(Exception e){
+            if (e.getMessage().equals("No alumno encontrado")){
+                System.out.println("No se encontro ningun coordinador en la base de datos");
+            } else{
+                System.err.println("Error al consultar  de cdatos especificos de oordinador: "+e);
+            }
+        } finally{
+            //this.desconectar();
+            this.close();
+        }
+        
+        return salida;
     }
     
     
