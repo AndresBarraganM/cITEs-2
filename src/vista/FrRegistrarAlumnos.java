@@ -5,8 +5,6 @@
 package vista;
 
 import javax.swing.JOptionPane;
-import cites.Alumno;
-import database.SqlAlumno;
 
 /**
  *
@@ -148,12 +146,12 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
         FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
       // 05-03-2024
-                try {
-                nombreAlumnos = txtFieldNombre.getText();
-                correoAlumnos = txtFieldCorreo.getText();
-                numControl = txtFieldNumControl.getText();
-                passwordChars = passwordField.getPassword();
-        
+        try {
+            nombreAlumnos = txtFieldNombre.getText();
+            correoAlumnos = txtFieldCorreo.getText();
+            numControl = txtFieldNumControl.getText();
+           
+
             if (txtFieldNombre.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Error: Indicar el Nombre del Alumno");
                 //para que en el error el focus se ponga aquí
@@ -190,6 +188,9 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
             throw new IllegalArgumentException("El campo de contraseña está vacío.");
         }
 
+            //Mostramos la interfaz del menu alumnos
+            menuAlumnos.setVisible(true);
+
             //Para que se cierre la ventana 
             this.dispose();
         } catch (Exception ex) {
@@ -200,29 +201,8 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
                 case "numControl": txtFieldNumControl.grabFocus(); break;
                 default: break;
             }
-            
         }                                                                         
-          String contrasena = new String(passwordChars);
-
-          Alumno alumno = new Alumno();
-          alumno.setNombreCompleto(nombreAlumnos);
-          alumno.setCorreoInstitucional(correoAlumnos);
-          alumno.setNumeroControl(Integer.valueOf(numControl));
-          alumno.setContrasena(contrasena);
-
-          SqlAlumno sqlAlumno = new SqlAlumno();
-          sqlAlumno.crearAlumno(alumno);  
-           
-                        // Verificar si se encontró un alumno con las credenciales proporcionadas
-        if (alumno.getId() != null) {
-            // Si el alumno existe, mostrar la interfaz del menú principal
-            menuAlumnos.setVisible(true);
-        }
-            //Para que se cierre la ventana de inicio de sesión
-        else{
-            this.dispose();
-        }
-   
+          
     }                                       
   
                                

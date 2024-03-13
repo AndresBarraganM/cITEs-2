@@ -15,9 +15,6 @@ public class FrCitasPendientes extends javax.swing.JFrame {
      */
     public FrCitasPendientes() {
         initComponents();
-        SqlCitas sqlCitas = new SqlCitas();
-        DefaultTableModel modeloTabla = sqlCitas.setTableForCitaPendiente();
-        jTable1.setModel(modeloTabla);
     }
 
     /**

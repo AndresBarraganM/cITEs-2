@@ -4,7 +4,12 @@ import database.SqlCoordinador;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author PC
@@ -84,7 +89,16 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         lblinstruccion.setText("Rellene sus datos para agendar una cita ");
         jPanelFondoRefe.add(lblinstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
-        CmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas Computacionales - Sandra", "Item 2", "Item 3", "Item 4" }));
+        SqlCoordinador SqlCoordinador = new SqlCoordinador();
+        SqlCoordinador.mirarOpcionesCoordinacion();
+        ArrayList<String> Coordinador= SqlCoordinador.mirarOpcionesCoordinacion();
+        Iterator it = Coordinador.iterator();
+        Vector carreras=new Vector();
+        while (it.hasNext()){
+            carreras.add(it.next());
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel(carreras);
+        CmbCarrera.setModel(model);
         CmbCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbCarreraActionPerformed(evt);
@@ -211,18 +225,22 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
+        /* 
         SqlCoordinador SqlCoordinador = new SqlCoordinador();
         SqlCoordinador.mirarOpcionesCoordinacion();  
         ArrayList<String> Coordinador= SqlCoordinador.mirarOpcionesCoordinacion();
         Iterator it = Coordinador.iterator();
-        Vector CmbCarrera=new Vector();
+        Vector carreras=new Vector();
         while (it.hasNext()){
-         CmbCarrera.add("Sarahí Castaños Lafarga - Sistemas");
-         CmbCarrera.add("Ismael Hernández Capuchin - Mecatronica");
-         CmbCarrera.add("María Mayté Loera Sánchez - Industrial");
+         carreras.add("Sarahí Castaños Lafarga - Sistemas");
+         carreras.add("Ismael Hernández Capuchin - Mecatronica");
+         carreras.add("María Mayté Loera Sánchez - Industrial");
         }
-
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel(carreras); 
+        */
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -15,9 +15,6 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
      */
     public FrCitasRegistradas() {
         initComponents();
-        SqlCitas sqlCitas = new SqlCitas();
-        DefaultTableModel modeloTabla = sqlCitas.setTableForAlumno();
-        jTable1.setModel(modeloTabla);
     }
 
     /**
@@ -74,17 +71,17 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "ID", "Coordinacion", "Horario", "Fecha", "Estado", "Motivo"
+                "Nombre", "ID", "No. de Control", "Carrera", "Horario"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
