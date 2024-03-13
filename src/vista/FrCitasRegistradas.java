@@ -15,6 +15,9 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
      */
     public FrCitasRegistradas() {
         initComponents();
+        SqlCitas sqlCitas = new SqlCitas();
+        DefaultTableModel modeloTabla = sqlCitas.setTableForAlumno();
+        jTable1.setModel(modeloTabla);
     }
 
     /**
