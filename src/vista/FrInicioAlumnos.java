@@ -1,7 +1,10 @@
 package vista;
 
+import database.SqlCoordinador;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author PC
@@ -208,6 +211,17 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+
+        SqlCoordinador SqlCoordinador = new SqlCoordinador();
+        SqlCoordinador.mirarOpcionesCoordinacion();  
+        ArrayList<String> Coordinador= SqlCoordinador.mirarOpcionesCoordinacion();
+        Iterator it = Coordinador.iterator();
+        Vector CmbCarrera=new Vector();
+        while (it.hasNext()){
+         CmbCarrera.add("Sarahí Castaños Lafarga - Sistemas");
+         CmbCarrera.add("Ismael Hernández Capuchin - Mecatronica");
+         CmbCarrera.add("María Mayté Loera Sánchez - Industrial");
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
