@@ -49,7 +49,7 @@ public class SqlCoordinador extends SqlConector {
     public Coordinador consultarCoordinador(String contrasenia, String numEmpleado){ //por areglar
         //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
         Coordinador coordinador = new Coordinador();
-        String sqlSelect = "SELECT * FROM Coordinador WHERE numEmpleado = (?) AND contrasenia = (?)";
+        String sqlSelect = "SELECT * FROM Coordinador WHERE numeroEmpleado = (?) AND contrasenia = (?)";
 
         
         try {
@@ -139,6 +139,7 @@ public class SqlCoordinador extends SqlConector {
             }
             
             //Pasar a objeto salida
+            salida.add("----------------------");
             while(RS.next()){
                 salida.add(
                  RS.getString(1) //ID

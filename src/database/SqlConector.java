@@ -60,6 +60,7 @@ public class SqlConector {
     public void close(){
         try{
             con.close();
+            System.out.println("conexion Terminada");
         } catch(SQLException ex) {
             System.out.println("Error al cerrar base de datos");
         }

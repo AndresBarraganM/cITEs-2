@@ -46,18 +46,6 @@ public class SqlCitas extends SqlConector { //TODO Por probar
         
         return DT;
     }
-
-    public DefaultTableModel setTableForCitaPendiente(){
-        DT = new DefaultTableModel();
-        DT.addColumn("Nombre");
-        DT.addColumn("ID");
-        DT.addColumn("No. Control"); // Nombre del coordinador
-        DT.addColumn("Carrera");
-        DT.addColumn("Horario");
-        DT.addColumn("Cita");
-        
-        return DT;
-    }
     
     public void crearCita(Cita cita){ 
         //Obtener datos
