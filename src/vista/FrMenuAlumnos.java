@@ -4,16 +4,21 @@
  */
 package vista;
 
+import cites.Alumno;
+
 /**
  *
  * @author Usuario
  */
 public class FrMenuAlumnos extends javax.swing.JFrame {
+    //Objeto que representa el usuario
+    Alumno usuario;
 
     /**
      * Creates new form Inicio
      */
-    public FrMenuAlumnos() {
+    public FrMenuAlumnos(Alumno usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -123,7 +128,7 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
         // TODO add your handling code here:
-        FrPerfilUsuario Usuario = new FrPerfilUsuario();
+        FrPerfilUsuario Usuario = new FrPerfilUsuario(this.usuario);
         
         //Mostramos la interfaz de ver mi usuario
         Usuario.setVisible(true);
@@ -134,7 +139,7 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
 
     private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCitasActionPerformed
         // TODO add your handling code here:
-        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas();
+        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas(this.usuario);
         
         //Mostramos la interfaz de Ver Citas
         citasRegistradas.setVisible(true);
@@ -145,7 +150,7 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
         // TODO add your handling code here:
-        FrInicioAlumnos inicioAlumnos = new FrInicioAlumnos();
+        FrInicioAlumnos inicioAlumnos = new FrInicioAlumnos(this.usuario);
         
         //Mostramos la interfaz para agendar citas
         inicioAlumnos.setVisible(true);
@@ -198,7 +203,8 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrMenuAlumnos().setVisible(true);
+                Alumno alumno = new Alumno();
+                new FrMenuAlumnos(alumno).setVisible(true);
             }
         });
     }

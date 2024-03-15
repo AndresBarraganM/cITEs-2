@@ -153,7 +153,7 @@ public class FrAlumnos extends javax.swing.JFrame {
         // Verificar si se encontró un alumno con las credenciales proporcionadas
         if (alumno.getId() != null) {
             // Si el alumno existe, mostrar la interfaz del menú principal
-            FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+            FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(alumno);
             menuAlumnos.setVisible(true);
             //Para que se cierre la ventana de inicio de sesión
             this.dispose();

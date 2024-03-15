@@ -15,11 +15,12 @@ import cites.Coordinador;
  * @author PC
  */
 public class FrPerfilUsuario extends javax.swing.JFrame {
-
+     Alumno usuario;
     /**
      * Creates new form FrAlumnos
      */
-    public FrPerfilUsuario() {
+    public FrPerfilUsuario(Alumno usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -174,7 +175,7 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(this.usuario);
         
         //Mostramos la interfaz del menu alumnos
         menuAlumnos.setVisible(true);
@@ -185,7 +186,7 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(this.usuario);
         
         //Mostramos la interfaz del menu alumnos
         menuAlumnos.setVisible(true);
@@ -276,7 +277,8 @@ public class FrPerfilUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrPerfilUsuario().setVisible(true);
+                Alumno alumno = new Alumno();
+                new FrPerfilUsuario(alumno).setVisible(true);
             }
         });
     }

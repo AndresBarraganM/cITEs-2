@@ -1,5 +1,8 @@
 package vista;
 
+import cites.Alumno;
+import cites.Cita;
+import database.SqlCitas;
 import database.SqlCoordinador;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,21 +11,23 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-
+import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 /**
  *
  * @author PC
  */
 public class FrInicioAlumnos extends javax.swing.JFrame {
-
+    Alumno usuario;
     /**
      * Creates new form FrAlumnos
      */
-    public FrInicioAlumnos() {
+    public FrInicioAlumnos(Alumno usuairo) {
+        this.usuario = usuario;
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +40,6 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         jpanelFondoRefe = new javax.swing.JPanel();
         jPanelFondoRefe = new javax.swing.JPanel();
         lblHorarios = new javax.swing.JLabel();
-        txtFieldDetalles = new javax.swing.JTextField();
         lblSeleccionCarrera = new javax.swing.JLabel();
         BtnAceptar = new javax.swing.JButton();
         BtnRegresar = new javax.swing.JButton();
@@ -45,6 +49,12 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         lblMotivos = new javax.swing.JLabel();
         CmbMotivos = new javax.swing.JComboBox<>();
         lblMotivos1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtADetalles = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        cmboxDia = new javax.swing.JComboBox<>();
+        cmboxMes = new javax.swing.JComboBox<>();
+        cmboxAnio = new javax.swing.JComboBox<>();
         lblCites = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,9 +69,8 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         jPanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHorarios.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
-        lblHorarios.setText("Horarios Disponibles:");
+        lblHorarios.setText("Horario:");
         jPanelFondoRefe.add(lblHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, 30));
-        jPanelFondoRefe.add(txtFieldDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 690, 180));
 
         lblSeleccionCarrera.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
         lblSeleccionCarrera.setText("Seleccione la coordinacion de su carrera:");
@@ -106,19 +115,19 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         });
         jPanelFondoRefe.add(CmbCarrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 320, 30));
 
-        CmbHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9:00-10:00", "Item 2", "Item 3", "Item 4" }));
+        CmbHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:30", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00" }));
         CmbHorarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbHorariosActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(CmbHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 140, 30));
+        jPanelFondoRefe.add(CmbHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, 140, 30));
 
         lblMotivos.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
         lblMotivos.setText("Motivo de la Cita:");
         jPanelFondoRefe.add(lblMotivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 30));
 
-        CmbMotivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CmbMotivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------------------", "Cambio de carrera", "Quejas", "Cambio de materias", "Dudas", "Otro", " " }));
         CmbMotivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbMotivosActionPerformed(evt);
@@ -129,6 +138,36 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         lblMotivos1.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
         lblMotivos1.setText("Detalles de la cita:");
         jPanelFondoRefe.add(lblMotivos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, 30));
+
+        txtADetalles.setColumns(10);
+        txtADetalles.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtADetalles.setLineWrap(true);
+        txtADetalles.setRows(5);
+        txtADetalles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtADetallesKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(txtADetalles);
+
+        jPanelFondoRefe.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 730, 200));
+
+        jLabel1.setText("(maximo 175 caracters)");
+        jPanelFondoRefe.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
+
+        cmboxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanelFondoRefe.add(cmboxDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 100, 30));
+
+        cmboxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Nobiembre", "Diciembre" }));
+        jPanelFondoRefe.add(cmboxMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 100, 30));
+
+        cmboxAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2024", "2025" }));
+        cmboxAnio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmboxAnioActionPerformed(evt);
+            }
+        });
+        jPanelFondoRefe.add(cmboxAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 100, 30));
 
         jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 860, 580));
 
@@ -142,19 +181,58 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
-        // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+        //Revisar que este correcta la informacion de etnrada
+        if(this.revisarCorectitud()){
+        //Obtener datos
+        String cordinador = (String) CmbCarrera.getSelectedItem();
+        String cordID = cordinador.split("-")[0];
         
-        //Mostramos la interfaz del menu principal
+        //int alumnoID =    TODO
+        String alumnoID = this.usuario.getId();
+        
+        String motivos = (String) CmbMotivos.getSelectedItem();
+        
+        if (txtADetalles.getText().isEmpty()){
+            motivos += ": "+ txtADetalles.getText();
+        }
+        
+        String horaCmb = String.valueOf(CmbHorarios.getSelectedItem());
+        String[] horaDividida = horaCmb.split(":");
+        int horaMilitar = Integer.parseInt(horaDividida[0] + horaDividida[1]);
+                
+        int dia = cmboxDia.getSelectedIndex();
+        int mes =  cmboxMes.getSelectedIndex();
+        int anio = Integer.parseInt((String) cmboxAnio.getSelectedItem());
+                
+        String estado = "p";
+        
+        
+        //Pasar datos a objeto cita
+        Cita cita = new Cita();
+        
+        cita.setCitadorId(cordID);
+        cita.setCitadorDocente(alumnoID);
+        cita.setMotivo(motivos);
+        cita.setEstado(estado);
+        cita.setAnio(anio);
+        cita.setMes(mes);
+        cita.setDia(dia);
+        cita.setHora(horaMilitar);
+                
+        SqlCitas db = new SqlCitas();
+        db.crearCita(cita);
+        
+        // Si salio correcto
+        JOptionPane.showMessageDialog(null, "Se ha agendado la cita");
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(this.usuario);
         menuAlumnos.setVisible(true);
-        
-        //Para que se cierre la ventana 
         this.dispose();
+        }
     }//GEN-LAST:event_BtnAceptarActionPerformed
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
-       FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+       FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(this.usuario);
         
         //Mostramos la interfaz del menu principal
         menuAlumnos.setVisible(true);
@@ -176,26 +254,31 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_CmbCarreraActionPerformed
 
     private void CmbHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbHorariosActionPerformed
-        // TODO add your handling code here:
-         if (CmbHorarios.getSelectedIndex() == -1) {
-        // Lanza una excepción indicando que no se a seleccionado ningun horario 
-        JOptionPane.showMessageDialog(null, "Por favor, seleccione el horario de preferencia  para su cita .", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
-       
-        // Aquí va el resto del código que deseas ejecutar cuando se ha seleccionado horario de cita :
-    }
+
     }//GEN-LAST:event_CmbHorariosActionPerformed
 
     private void CmbMotivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbMotivosActionPerformed
         // TODO add your handling code here:
-           if (CmbMotivos.getSelectedIndex() == -1) {
-        // Lanza una excepción indicando que no se a seleccionado el motivo de cita 
-        JOptionPane.showMessageDialog(null, "Por favor, seleccione el motivo de su cita .", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
-       
-        // Aquí va el resto del código que deseas ejecutar cuando se ha seleccionado motivo cita:
-    }
+          
     }//GEN-LAST:event_CmbMotivosActionPerformed
+
+    //Codigo para tener maximo de palabras
+    private void txtADetallesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtADetallesKeyPressed
+
+        int max = 175;
+    if(txtADetalles.getText().length() > max+1) {
+        evt.consume();
+        String shortened = txtADetalles.getText().substring(0, max);
+        txtADetalles.setText(shortened);
+    }else if(txtADetalles.getText().length() > max) {
+        evt.consume();
+    }
+
+    }//GEN-LAST:event_txtADetallesKeyPressed
+
+    private void cmboxAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmboxAnioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmboxAnioActionPerformed
     
     
     /**
@@ -244,7 +327,8 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrInicioAlumnos().setVisible(true);
+                Alumno alumno = new Alumno();
+                new FrInicioAlumnos(alumno).setVisible(true);
             }
         });
     }
@@ -256,7 +340,12 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CmbCarrera;
     private javax.swing.JComboBox<String> CmbHorarios;
     private javax.swing.JComboBox<String> CmbMotivos;
+    private javax.swing.JComboBox<String> cmboxAnio;
+    private javax.swing.JComboBox<String> cmboxDia;
+    private javax.swing.JComboBox<String> cmboxMes;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelFondoRefe;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpanelFondoRefe;
     private javax.swing.JLabel lblCites;
     private javax.swing.JLabel lblHorarios;
@@ -264,6 +353,36 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
     private javax.swing.JLabel lblMotivos1;
     private javax.swing.JLabel lblSeleccionCarrera;
     private javax.swing.JLabel lblinstruccion;
-    private javax.swing.JTextField txtFieldDetalles;
+    private javax.swing.JTextArea txtADetalles;
     // End of variables declaration//GEN-END:variables
+
+    private boolean revisarCorectitud() {
+        boolean bandera = true;
+         if (CmbMotivos.getSelectedIndex() == 0) {
+             bandera = false;
+             JOptionPane.showMessageDialog(null, "Por favor, seleccione el motivo de su cita .", "Error", JOptionPane.ERROR_MESSAGE);
+         } else
+        if (CmbCarrera.getSelectedIndex() == 0){
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Seleccione a la coordinacion con quien quiere agendar cita");
+        } else
+        if (cmboxMes.getSelectedIndex() == 0){
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Seleccione el mes en el quie quiere agendar cita");
+        } else
+        if (cmboxDia.getSelectedIndex() == 0){
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Seleccione el dia en el quie quiere agendar cita");
+        } else
+            
+        if (cmboxAnio.getSelectedIndex() == 0){
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Seleccione el anio en el quie quiere agendar cita");
+        } else  
+        if (CmbHorarios.getSelectedIndex() == 0){
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Seleccione el horario en el quie quiere agendar cita");
+        }
+       return bandera;
+    }
 }
