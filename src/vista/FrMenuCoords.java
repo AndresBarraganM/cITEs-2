@@ -87,17 +87,17 @@ public class FrMenuCoords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCitasActionPerformed
+    private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas();
+        FrCitasCoords citasCoords = new FrCitasCoords();
         
         //Mostramos la interfaz de Ver Citas
-        citasRegistradas.setVisible(true);
+        citasCoords.setVisible(true);
         
         //Cierre de Ventana
         this.dispose();
         
-    }//GEN-LAST:event_btnVerCitasActionPerformed
+    } 
 
     private void btnCitasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasPendientesActionPerformed
         // TODO add your handling code here:
