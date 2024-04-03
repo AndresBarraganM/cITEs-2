@@ -11,11 +11,14 @@ import javax.swing.JOptionPane;
  * @author PC
  */
 public class FrRegistrarAlumnos extends javax.swing.JFrame {
+    Alumno usuario;
 
     /**
      * Creates new form FrAlumnos
+     * @param usuario
      */
-    public FrRegistrarAlumnos() {
+    public FrRegistrarAlumnos(Alumno usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -144,7 +147,7 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
 
    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(this.usuario);
       // 05-03-2024
         try {
             nombreAlumnos = txtFieldNombre.getText();
@@ -294,7 +297,8 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrRegistrarAlumnos().setVisible(true);
+                Alumno alumno = new Alumno();
+                new FrRegistrarAlumnos(alumno).setVisible(true);
             }
         });
     }
