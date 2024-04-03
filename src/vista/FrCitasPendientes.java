@@ -4,6 +4,8 @@
  */
 package vista;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PC
@@ -30,9 +32,11 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         lblCites = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
         BtnRegresar = new javax.swing.JButton();
-        BtnAceptar = new javax.swing.JButton();
+        BtnSeleccionar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        BtnBorrar = new javax.swing.JButton();
+        BtnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -51,7 +55,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblBienvenida.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenida.setText("Citas pendientes");
-        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 210, -1));
+        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 210, -1));
 
         BtnRegresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         BtnRegresar.setText("REGRESAR");
@@ -62,14 +66,14 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         });
         jpanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 150, 50));
 
-        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnAceptar.setText("ACEPTAR");
-        BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        BtnSeleccionar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnSeleccionar.setText("SELECCIONAR");
+        BtnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAceptarActionPerformed(evt);
+                BtnSeleccionarActionPerformed(evt);
             }
         });
-        jpanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
+        jpanelFondoRefe.add(BtnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 300, 150, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,7 +100,25 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jpanelFondoRefe.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 860, 470));
+        jpanelFondoRefe.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 740, 380));
+
+        BtnBorrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnBorrar.setText("BORRAR");
+        BtnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBorrarActionPerformed(evt);
+            }
+        });
+        jpanelFondoRefe.add(BtnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 390, 150, 50));
+
+        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnAceptar.setText("ACEPTAR");
+        BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAceptarActionPerformed(evt);
+            }
+        });
+        jpanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
 
         getContentPane().add(jpanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 770));
 
@@ -114,6 +136,23 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
+    private void BtnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeleccionarActionPerformed
+        // TODO add your handling code here:
+        int[] selectedRows = jTable1.getSelectedRows();
+                for (int i = 0; i < selectedRows.length; i++) {
+                    System.out.println("Fila seleccionada: " + selectedRows[i]);
+    }//GEN-LAST:event_BtnSeleccionarActionPerformed
+    }
+    
+    private void BtnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarActionPerformed
+        // TODO add your handling code here:
+        int[] selectedRows = jTable1.getSelectedRows();
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                for (int i = selectedRows.length - 1; i >= 0; i--) {
+                    model.removeRow(selectedRows[i]);
+    }//GEN-LAST:event_BtnBorrarActionPerformed
+    }
+    
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
         FrMenuCoords menuCoords = new FrMenuCoords();
@@ -165,7 +204,9 @@ public class FrCitasPendientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
+    private javax.swing.JButton BtnBorrar;
     private javax.swing.JButton BtnRegresar;
+    private javax.swing.JButton BtnSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpanelFondoRefe;
