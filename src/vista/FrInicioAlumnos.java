@@ -24,7 +24,7 @@ public class FrInicioAlumnos extends javax.swing.JFrame {
     /**
      * Creates new form FrAlumnos
      */
-    public FrInicioAlumnos(Alumno usuairo) {
+    public FrInicioAlumnos(Alumno usuario) {
         this.usuario = usuario;
         initComponents();
     }
