@@ -4,6 +4,7 @@
  */
 package vista;
 
+import cites.Alumno;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,14 +12,11 @@ import javax.swing.JOptionPane;
  * @author PC
  */
 public class FrRegistrarAlumnos extends javax.swing.JFrame {
-    Alumno usuario;
 
     /**
      * Creates new form FrAlumnos
-     * @param usuario
      */
-    public FrRegistrarAlumnos(Alumno usuario) {
-        this.usuario = usuario;
+    public FrRegistrarAlumnos() {
         initComponents();
     }
 
@@ -44,7 +42,8 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         txtFieldCorreo = new javax.swing.JTextField();
         txtFieldNumControl = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
-        btnMostrarContra = new javax.swing.JButton();
+        lblContrasenia1 = new javax.swing.JLabel();
+        passwordField1 = new javax.swing.JPasswordField();
         lblCites = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,8 +92,8 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         jPanelFondoRefe.add(lblNumControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, 30));
 
         lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
-        lblContrasenia.setText("Contraseña:");
-        jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, 30));
+        lblContrasenia.setText("Repetir Contraseña:");
+        jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, -1, 30));
 
         txtFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,17 +121,18 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
                 passwordFieldActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 260, 30));
+        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 260, 30));
 
-        btnMostrarContra.setBackground(new java.awt.Color(242, 242, 242));
-        btnMostrarContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/3844476-eye-see-show-view-watch_110339.png"))); // NOI18N
-        btnMostrarContra.setContentAreaFilled(false);
-        btnMostrarContra.addActionListener(new java.awt.event.ActionListener() {
+        lblContrasenia1.setFont(new java.awt.Font("Eras Bold ITC", 0, 18)); // NOI18N
+        lblContrasenia1.setText("Contraseña:");
+        jPanelFondoRefe.add(lblContrasenia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, -1, 30));
+
+        passwordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarContraActionPerformed(evt);
+                passwordField1ActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 30, 30));
+        jPanelFondoRefe.add(passwordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, 260, 30));
 
         jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 860, 580));
 
@@ -147,7 +147,8 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
 
    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(this.usuario);
+        Alumno alumno = new Alumno();
+        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(alumno);
       // 05-03-2024
         try {
             nombreAlumnos = txtFieldNombre.getText();
@@ -175,6 +176,13 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
                 focus = "numControl";
                 return; // Se agrega un return para salir del método si hay un error
             }
+            String contra = new String(passwordField.getPassword());
+            if (! contra.equals(new String(passwordField1.getPassword()))) {
+                JOptionPane.showMessageDialog(null, "Error: No coinciden las contrasenas");
+
+                return; // Se agrega un return para salir del método si hay un error
+            }
+            
             String numControl = txtFieldNumControl.getText().trim(); // Obtenemos el texto del campo y eliminamos espacios en blanco al inicio y al final
 
         // Verificamos si el número de control contiene caracteres que no sean dígitos
@@ -191,8 +199,9 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
             throw new IllegalArgumentException("El campo de contraseña está vacío.");
         }
 
-            //Mostramos la interfaz del menu alumnos
-            menuAlumnos.setVisible(true);
+        
+        //Mostramos la interfaz del menu alumnos
+        menuAlumnos.setVisible(true);
 
             //Para que se cierre la ventana 
             this.dispose();
@@ -237,20 +246,6 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_txtFieldNumControlActionPerformed
 
-    private void btnMostrarContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarContraActionPerformed
-        // TODO add your handling code here:
-    if(btnMostrarContra.getText().equals("Mostrar")) {
-        passwordField.setEchoChar((char)0); // Mostrar la contraseña
-        
-        btnMostrarContra.setText("Ocultar");
-    } 
-    else {
-        passwordField.setEchoChar('*'); // Ocultar la contraseña
-        btnMostrarContra.setText("Mostrar");
-    }
-        
-    }//GEN-LAST:event_btnMostrarContraActionPerformed
-
     //IGNORAR DE AQUI
     private void txtFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNombreActionPerformed
    
@@ -263,6 +258,10 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
 
     }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void passwordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,8 +296,7 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Alumno alumno = new Alumno();
-                new FrRegistrarAlumnos(alumno).setVisible(true);
+                new FrRegistrarAlumnos().setVisible(true);
             }
         });
     }
@@ -310,16 +308,17 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
     private javax.swing.JButton BtnRegresar;
-    private javax.swing.JButton btnMostrarContra;
     private javax.swing.JPanel jPanelFondoRefe;
     private javax.swing.JPanel jpanelFondoRefe;
     private javax.swing.JLabel lblCites;
     private javax.swing.JLabel lblContrasenia;
+    private javax.swing.JLabel lblContrasenia1;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNumControl;
     private javax.swing.JLabel lblinstruccion;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JPasswordField passwordField1;
     private javax.swing.JTextField txtFieldCorreo;
     private javax.swing.JTextField txtFieldNombre;
     private javax.swing.JTextField txtFieldNumControl;

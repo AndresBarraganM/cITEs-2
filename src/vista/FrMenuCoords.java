@@ -4,16 +4,20 @@
  */
 package vista;
 
+import cites.Coordinador;
+
 /**
  *
  * @author Usuario
  */
 public class FrMenuCoords extends javax.swing.JFrame {
-
+    Coordinador usuario;
+    
     /**
      * Creates new form Inicio
      */
-    public FrMenuCoords() {
+    public FrMenuCoords(Coordinador usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -27,6 +31,8 @@ public class FrMenuCoords extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelFondoRef = new javax.swing.JPanel();
+        btnVerPerfil = new javax.swing.JButton();
+        lblVerCitas1 = new javax.swing.JLabel();
         lblLogoCites = new javax.swing.JLabel();
         btnCitasPendientes = new javax.swing.JButton();
         btnVerCitas = new javax.swing.JButton();
@@ -44,6 +50,22 @@ public class FrMenuCoords extends javax.swing.JFrame {
         jPanelFondoRef.setMinimumSize(new java.awt.Dimension(1024, 768));
         jPanelFondoRef.setPreferredSize(new java.awt.Dimension(1024, 768));
         jPanelFondoRef.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnVerPerfil.setBackground(new java.awt.Color(15, 35, 50));
+        btnVerPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imgCoord.png"))); // NOI18N
+        btnVerPerfil.setBorderPainted(false);
+        btnVerPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVerPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPerfilActionPerformed(evt);
+            }
+        });
+        jPanelFondoRef.add(btnVerPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, 190, 110));
+
+        lblVerCitas1.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblVerCitas1.setForeground(new java.awt.Color(255, 255, 255));
+        lblVerCitas1.setText("VER PERFIL");
+        jPanelFondoRef.add(lblVerCitas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 670, -1, -1));
 
         lblLogoCites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoCites.png"))); // NOI18N
         jPanelFondoRef.add(lblLogoCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
@@ -87,17 +109,16 @@ public class FrMenuCoords extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-        FrCitasCoords citasCoords = new FrCitasCoords();
+    private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCitasActionPerformed
+        //TODO    NOTA 
+        //La ventana FrCitasRegistradas es para los alumnos, parece que nos falta una ventana para coordinadores
         
-        //Mostramos la interfaz de Ver Citas
-        citasCoords.setVisible(true);
+        //FrCitasRegistradas citasRegistradas = new FrCitasRegistradas();
         
-        //Cierre de Ventana
+        //citasRegistradas.setVisible(true);
         this.dispose();
         
-    } 
+    }//GEN-LAST:event_btnVerCitasActionPerformed
 
     private void btnCitasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasPendientesActionPerformed
         // TODO add your handling code here:
@@ -109,6 +130,17 @@ public class FrMenuCoords extends javax.swing.JFrame {
         //Cierre de Ventana
         this.dispose();
     }//GEN-LAST:event_btnCitasPendientesActionPerformed
+
+    private void btnVerPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPerfilActionPerformed
+       // TODO add your handling code here:
+        FrPerfilCoordinador perfil = new FrPerfilCoordinador(this.usuario);
+        
+        //Mostramos la interfaz de Ver Citas
+        perfil.setVisible(true);
+        
+        //Cierre de Ventana
+        this.dispose();
+    }//GEN-LAST:event_btnVerPerfilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,7 +175,8 @@ public class FrMenuCoords extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrMenuCoords().setVisible(true);
+                Coordinador coord = new Coordinador();
+                new FrMenuCoords(coord).setVisible(true);
             }
         });
     }
@@ -151,10 +184,12 @@ public class FrMenuCoords extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCitasPendientes;
     private javax.swing.JButton btnVerCitas;
+    private javax.swing.JButton btnVerPerfil;
     private javax.swing.JPanel jPanelFondoRef;
     private javax.swing.JLabel lblCitasPendie;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblLogoCites;
     private javax.swing.JLabel lblVerCitas;
+    private javax.swing.JLabel lblVerCitas1;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  * @author PC
  */
 public class FrCoords extends javax.swing.JFrame {
+    Coordinador usuario;
 
     /**
      * Creates new form FrAlumnos
@@ -181,8 +182,11 @@ public class FrCoords extends javax.swing.JFrame {
 
         // Verificar si se encontró un alumno con las credenciales proporcionadas
         if (coordinador.getId() != null) {
+            //Asignar variable propia como coordinador
+            this.usuario = coordinador;
+            
             // Si el coordinador existe, mostrar la interfaz del menú principal
-            FrMenuCoords inicioCoords = new FrMenuCoords();
+            FrMenuCoords inicioCoords = new FrMenuCoords(this.usuario);
             inicioCoords.setVisible(true);
             //Para que se cierre la ventana de inicio de sesión
             this.dispose();
