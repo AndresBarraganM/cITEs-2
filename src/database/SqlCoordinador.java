@@ -23,7 +23,7 @@ public class SqlCoordinador extends SqlConector {
         String cargo = coordinador.getCargo();
         
         //FALTAba CARGO
-        String sqlInsert= "INSERT INTO Coordinador (nombre, cargo, matricula, correo, contrasenia) values (?,?,?,?,?)";
+        String sqlInsert= "INSERT INTO Coordinador (nombre, cargo, numeroEmpleado, correo, contrasenia) values (?,?,?,?,?)";
         //nombre, cargo, matricula, contrasenia, correo
         try {
             this.conectar();
@@ -168,7 +168,7 @@ public class SqlCoordinador extends SqlConector {
     public void modificarCoordinador(Coordinador coordinador){ 
         //Ocupa un objeto coordinador con el que sobre escribir el campo de la base de datos
         //fuente: https://www.youtube.com/watch?v=UNiYU0NjiQI
-        String sqlUpdate= "UPDATE Coordinador SET nombre = (?), cargo = (?), matricula = (?), contrasenia = (?), correo = (?) WHERE id_coordinador = (?)";
+        String sqlUpdate= "UPDATE Coordinador SET nombre = (?), cargo = (?), numeroEmpleado = (?), contrasenia = (?), correo = (?) WHERE id_coordinador = (?)";
         String nombre = coordinador.getNombreCompleto();
         String cargo = coordinador.getCargo();
         int matricula = coordinador.getNumeroControl();
@@ -185,6 +185,7 @@ public class SqlCoordinador extends SqlConector {
             PS.setString(3,String.valueOf(matricula));
             PS.setString(4,contrasenia);
             PS.setString(5,correo);
+            PS.setString(6, id_usuario);
             
             PS.execute();
             
