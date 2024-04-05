@@ -5,21 +5,25 @@
 package vista;
 
 import cites.Alumno;
+import javax.swing.table.DefaultTableModel;
+import database.SqlCitas;
 
 /**
  *
  * @author PC
  */
 public class FrCitasRegistradas extends javax.swing.JFrame {
-    
     Alumno usuario;
+    private SqlCitas sqlCitas;
 
     /**
      * Creates new form FrAlumnos
+     * @param usuario
      */
-    public FrCitasRegistradas() {
-        this.usuario = usuario;
+    public FrCitasRegistradas(Alumno usuario) {
         initComponents();
+        this.usuario = usuario;
+        this.sqlCitas = new SqlCitas();
     }
 
     /**
@@ -109,16 +113,18 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         this.dispose();
     }                                           
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void BtnMostrarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumno = new FrMenuAlumnos(this.usuario);
-
-        //Mostramos la interfaz del menu principal
-        menuAlumno.setVisible(true);
-
-        //Para que se cierre la ventana
-        this.dispose();
-    }                                         
+        mostrarCitasRegistradas();
+    }             
+    
+    private void mostrarCitasRegistradas(){
+        if (usuario != null) {
+            String idAlumno = usuario.getId(); // Obtener el ID del alumno
+            DefaultTableModel tableModel = sqlCitas.consultarCitasPorAlumno(idAlumno);
+            jTable1.setModel(tableModel);
+        }        
+    }                                   
 
     /**
      * @param args the command line arguments
@@ -149,9 +155,9 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrCitasRegistradas().setVisible(true);
+                Alumno alumno = new Alumno();
+                new FrCitasRegistradas(alumno).setVisible(true);
             }
         });
     }
