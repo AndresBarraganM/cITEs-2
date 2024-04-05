@@ -5,6 +5,8 @@
 package vista;
 
 import cites.Alumno;
+import database.SqlAlumno;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -148,7 +150,6 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Alumno alumno = new Alumno();
-        FrMenuAlumnos menuAlumnos = new FrMenuAlumnos(alumno);
       // 05-03-2024
         try {
             nombreAlumnos = txtFieldNombre.getText();
@@ -198,13 +199,21 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
         if (password.isEmpty()) {
             throw new IllegalArgumentException("El campo de contraseña está vacío.");
         }
+        
+        //Crear alumno
+        this.registrarAlumno();
+        
+        //Ya siendo realizado nos vamos a otra ventana
+        FrAlumnos menuAlumnos = new FrAlumnos();
+        
+        //Mostramos la interfaz del menu principal
+        menuAlumnos.setVisible(true);
+        
+        //Para que se cierre la ventana 
+        this.dispose();
 
         
         //Mostramos la interfaz del menu alumnos
-        menuAlumnos.setVisible(true);
-
-            //Para que se cierre la ventana 
-            this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             switch(focus){
@@ -213,7 +222,7 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
                 case "numControl": txtFieldNumControl.grabFocus(); break;
                 default: break;
             }
-        }                                                                         
+        }      
           
     }                                       
   
@@ -323,6 +332,19 @@ public class FrRegistrarAlumnos extends javax.swing.JFrame {
     private javax.swing.JTextField txtFieldNombre;
     private javax.swing.JTextField txtFieldNumControl;
     // End of variables declaration//GEN-END:variables
+
+    private void registrarAlumno() {
+        Alumno alumno = new Alumno();
+        
+        alumno.setNombreCompleto(txtFieldNombre.getText());
+        alumno.setCorreoInstitucional(txtFieldCorreo.getText());
+        alumno.setNumeroControl(Integer.parseInt(txtFieldNumControl.getText()));
+        alumno.setContrasena(new String(passwordField.getPassword()));
+        
+        SqlAlumno db = new SqlAlumno();
+        db.crearAlumno(alumno);
+        JOptionPane.showMessageDialog(null, "Se logro agregar el perfil", "Exito en agregar perfil", JOptionPane.INFORMATION_MESSAGE);
+    }
 }    
     
 
