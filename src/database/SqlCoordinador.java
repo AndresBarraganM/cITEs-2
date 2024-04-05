@@ -31,8 +31,8 @@ public class SqlCoordinador extends SqlConector {
             PS.setString(1,nombreCompleto);
             PS.setString(2,cargo);
             PS.setString(3,String.valueOf(numEmpleado));
-            PS.setString(5,correo);
-            PS.setString(4, contrasenia);
+            PS.setString(4,correo);
+            PS.setString(5, contrasenia);
             
             int res= PS.executeUpdate();
             if(res>0){
