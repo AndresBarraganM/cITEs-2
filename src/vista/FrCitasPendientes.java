@@ -131,15 +131,11 @@ public class FrCitasPendientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cargarCitasPendientes(){
-       try {
-            // Consultar las citas pendientes para el coordinador actual
-            String idCoordinador = "";
-            tableModel = sqlCitas.consultarCitasPorCoordinador(idCoordinador);
-
-            // Asignar el modelo de tabla actualizado a jTable1
+        if (usuario != null) {
+            String idCoordinador = usuario.getId();
+            // Utiliza el ID del coordinador para cargar las citas pendientes desde la base de datos
+            tableModel = sqlCitas.consultarCitasPorCoordinador(String.valueOf(idCoordinador));
             jTable1.setModel(tableModel);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar citas pendientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
