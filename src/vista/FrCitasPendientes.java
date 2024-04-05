@@ -11,12 +11,17 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class FrCitasPendientes extends javax.swing.JFrame {
+    
+    private SqlCitas sqlCitas;
+    private DefaultTableModel tableModel;
 
     /**
      * Creates new form FrAlumnos
      */
     public FrCitasPendientes() {
         initComponents();
+        sqlCitas = new SqlCitas();
+        cargarCitasPendientes();
     }
 
     /**
@@ -125,6 +130,19 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cargarCitasPendientes(){
+       try {
+            // Consultar las citas pendientes para el coordinador actual
+            String idCoordinador = "";
+            tableModel = sqlCitas.consultarCitasPorCoordinador(idCoordinador);
+
+            // Asignar el modelo de tabla actualizado a jTable1
+            jTable1.setModel(tableModel);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar citas pendientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
         FrMenuPrincipal inicio = new FrMenuPrincipal();
