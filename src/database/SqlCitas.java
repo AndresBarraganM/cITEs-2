@@ -180,7 +180,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
      public DefaultTableModel consultarCitasPorCoordinador(String idCoordinador){
         //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
         Cita citaCoord= new Cita();
-        String sqlSelect = "SELECT * FROM Citas WHERE coordinadorID = (?)";
+        String sqlSelect = "SELECT * FROM Citas WHERE coordinadorID = ? AND estado = 'p'";
         
         SqlAlumno alumnCon = new SqlAlumno();
         Alumno alumn;
