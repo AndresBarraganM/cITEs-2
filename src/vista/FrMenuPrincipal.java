@@ -47,7 +47,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         jPanelFondoRef.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoCites.png"))); // NOI18N
-        jPanelFondoRef.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        jPanelFondoRef.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
 
         btnCoords.setBackground(new java.awt.Color(15, 35, 50));
         btnCoords.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imgCoord.png"))); // NOI18N
@@ -57,7 +57,7 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
                 btnCoordsActionPerformed(evt);
             }
         });
-        jPanelFondoRef.add(btnCoords, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, 180, -1));
+        jPanelFondoRef.add(btnCoords, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 330, 180, -1));
 
         btnUsuario.setBackground(new java.awt.Color(15, 35, 50));
         btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/imgUsuario.png"))); // NOI18N
@@ -70,18 +70,18 @@ public class FrMenuPrincipal extends javax.swing.JFrame {
         });
         jPanelFondoRef.add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, 190, 110));
 
-        lblAlumno1.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblAlumno1.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblAlumno1.setForeground(new java.awt.Color(255, 255, 255));
         lblAlumno1.setText("COORDINADORES");
         jPanelFondoRef.add(lblAlumno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 440, -1, -1));
 
-        lblAlumno.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblAlumno.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblAlumno.setForeground(new java.awt.Color(255, 255, 255));
         lblAlumno.setText("ALUMNOS");
         jPanelFondoRef.add(lblAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/azulFondo.jpg"))); // NOI18N
-        jPanelFondoRef.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -40, 2140, 1030));
+        jPanelFondoRef.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -30, 2140, 1030));
 
         getContentPane().add(jPanelFondoRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 

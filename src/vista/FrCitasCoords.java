@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+import cites.Coordinador;
 import database.SqlCitas;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -10,11 +11,14 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class FrCitasCoords extends javax.swing.JFrame {
+    
+    Coordinador Administrador;
 
     /**
      * Creates new form FrAlumnos
      */
     public FrCitasCoords() {
+        this.Administrador = Administrador;
         initComponents();
         SqlCitas sqlCitas = new SqlCitas();
         DefaultTableModel modeloTabla = sqlCitas.setTableForCoordinador();
@@ -100,7 +104,7 @@ public class FrCitasCoords extends javax.swing.JFrame {
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords();
+        FrMenuCoords menuCoords = new FrMenuCoords(this.Administrador);
 
         //Mostramos la interfaz del menu principal
         menuCoords.setVisible(true);
@@ -111,7 +115,7 @@ public class FrCitasCoords extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords();
+        FrMenuCoords menuCoords = new FrMenuCoords(this.Administrador);
 
         //Mostramos la interfaz del menu principal
         menuCoords.setVisible(true);

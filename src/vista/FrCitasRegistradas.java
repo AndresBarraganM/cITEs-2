@@ -4,16 +4,21 @@
  */
 package vista;
 
+import cites.Alumno;
+
 /**
  *
  * @author PC
  */
 public class FrCitasRegistradas extends javax.swing.JFrame {
+    
+    Alumno usuario;
 
     /**
      * Creates new form FrAlumnos
      */
     public FrCitasRegistradas() {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -95,7 +100,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
 
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumno = new FrMenuAlumnos(this.usuario);
 
         //Mostramos la interfaz del menu principal
         menuAlumno.setVisible(true);
@@ -106,7 +111,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
 
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuAlumnos menuAlumno = new FrMenuAlumnos();
+        FrMenuAlumnos menuAlumno = new FrMenuAlumnos(this.usuario);
 
         //Mostramos la interfaz del menu principal
         menuAlumno.setVisible(true);

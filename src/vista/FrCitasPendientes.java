@@ -4,6 +4,7 @@
  */
 package vista;
 
+import cites.Coordinador;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,17 +12,14 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class FrCitasPendientes extends javax.swing.JFrame {
-    
-    private SqlCitas sqlCitas;
-    private DefaultTableModel tableModel;
+    Coordinador usuario;
 
     /**
      * Creates new form FrAlumnos
      */
     public FrCitasPendientes() {
+        this.usuario = usuario;
         initComponents();
-        sqlCitas = new SqlCitas();
-        cargarCitasPendientes();
     }
 
     /**
@@ -57,12 +55,12 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         lblCites.setText("cITEs");
         jpanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
 
-        lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblBienvenida.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblBienvenida.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenida.setText("Citas pendientes");
-        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 210, -1));
+        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 210, -1));
 
-        BtnRegresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnRegresar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnRegresar.setText("REGRESAR");
         BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +69,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         });
         jpanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 150, 50));
 
-        BtnSeleccionar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnSeleccionar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnSeleccionar.setText("SELECCIONAR");
         BtnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,12 +80,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
+                {null, null, null, null, null,  new Boolean(false)},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
@@ -107,7 +100,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
 
         jpanelFondoRefe.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 740, 380));
 
-        BtnBorrar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnBorrar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnBorrar.setText("BORRAR");
         BtnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +109,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         });
         jpanelFondoRefe.add(BtnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 390, 150, 50));
 
-        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnAceptar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnAceptar.setText("ACEPTAR");
         BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,15 +123,6 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarCitasPendientes(){
-        if (usuario != null) {
-            String idCoordinador = usuario.getId();
-            // Utiliza el ID del coordinador para cargar las citas pendientes desde la base de datos
-            tableModel = sqlCitas.consultarCitasPorCoordinador(String.valueOf(idCoordinador));
-            jTable1.setModel(tableModel);
-        }
-    }
-    
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
         FrMenuPrincipal inicio = new FrMenuPrincipal();
@@ -169,7 +153,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
     
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords();
+        FrMenuCoords menuCoords = new FrMenuCoords(this.usuario);
         
         //Mostramos la interfaz del menu principal
         menuCoords.setVisible(true);
