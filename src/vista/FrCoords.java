@@ -14,11 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class FrCoords extends javax.swing.JFrame {
     Coordinador usuario;
+    
 
     /**
      * Creates new form FrAlumnos
      */
     public FrCoords() {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -36,14 +38,16 @@ public class FrCoords extends javax.swing.JFrame {
         lblContrasenia = new javax.swing.JLabel();
         txtNumEmpleado = new javax.swing.JTextField();
         lblNoEmpleado = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
         btnMostrarContra = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
         BtnAceptar = new javax.swing.JButton();
-        BtnRegresar = new javax.swing.JButton();
         lblRegistro = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
         jLabelClick = new javax.swing.JLabel();
         lblCites = new javax.swing.JLabel();
+        lblEspirales = new javax.swing.JLabel();
+        lblEspiralesFuertes2 = new javax.swing.JLabel();
+        lblCiteslogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -54,31 +58,25 @@ public class FrCoords extends javax.swing.JFrame {
         jpanelFondoRefe.setPreferredSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelFondoRefe.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblContrasenia.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblContrasenia.setText("Contraseña:");
-        jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
 
+        txtNumEmpleado.setToolTipText("Ingrese su Num de Empleado");
         txtNumEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumEmpleadoActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(txtNumEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 440, 30));
+        jPanelFondoRefe.add(txtNumEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 270, 30));
 
-        lblNoEmpleado.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblNoEmpleado.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblNoEmpleado.setText("No. de Empleado:");
-        jPanelFondoRefe.add(lblNoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 30));
+        jPanelFondoRefe.add(lblNoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 30));
 
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
-        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 260, 30));
-
-        btnMostrarContra.setBackground(new java.awt.Color(242, 242, 242));
         btnMostrarContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/3844476-eye-see-show-view-watch_110339.png"))); // NOI18N
         btnMostrarContra.setBorderPainted(false);
         btnMostrarContra.addActionListener(new java.awt.event.ActionListener() {
@@ -86,49 +84,59 @@ public class FrCoords extends javax.swing.JFrame {
                 btnMostrarContraActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 30, 30));
+        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 30, 30));
 
-        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnAceptar.setText("ACEPTAR");
+        passwordField.setToolTipText("Ingrese su Contraseña");
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 260, 30));
+
+        BtnAceptar.setBackground(new java.awt.Color(15, 35, 50));
+        BtnAceptar.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        BtnAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAceptar.setText("Iniciar Sesión");
         BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAceptarActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 150, 50));
-
-        BtnRegresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnRegresar.setText("REGRESAR");
-        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRegresarActionPerformed(evt);
-            }
-        });
-        jPanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 150, 50));
+        jPanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 150, 40));
 
         lblRegistro.setText("¿No esta registrado? Registrese Aqui ");
-        jPanelFondoRefe.add(lblRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, -1, 30));
+        jPanelFondoRefe.add(lblRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, -1, 30));
 
-        lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblBienvenida.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblBienvenida.setText("¡BIENVENIDO COORDINADOR!");
-        jPanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jPanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         jLabelClick.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelClick.setForeground(new java.awt.Color(102, 102, 255));
+        jLabelClick.setForeground(new java.awt.Color(25, 25, 183));
         jLabelClick.setText("Click Aqui");
         jLabelClick.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelClickMouseClicked(evt);
             }
         });
-        jPanelFondoRefe.add(jLabelClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, 30));
-
-        jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 860, 560));
+        jPanelFondoRefe.add(jLabelClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, -1, 30));
 
         lblCites.setFont(new java.awt.Font("Eras Bold ITC", 0, 48)); // NOI18N
-        lblCites.setForeground(new java.awt.Color(255, 255, 255));
+        lblCites.setForeground(new java.awt.Color(15, 35, 50));
         lblCites.setText("cITEs");
-        jpanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, -1, -1));
+        jPanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
+
+        jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 610, 770));
+
+        lblEspirales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/EspiralesFuertes.png"))); // NOI18N
+        jpanelFondoRefe.add(lblEspirales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, -1, -1));
+
+        lblEspiralesFuertes2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/EspiralesFuertes2.png"))); // NOI18N
+        jpanelFondoRefe.add(lblEspiralesFuertes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
+
+        lblCiteslogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoCites.png"))); // NOI18N
+        jpanelFondoRefe.add(lblCiteslogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
         getContentPane().add(jpanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 770));
 
@@ -182,9 +190,6 @@ public class FrCoords extends javax.swing.JFrame {
 
         // Verificar si se encontró un alumno con las credenciales proporcionadas
         if (coordinador.getId() != null) {
-            //Asignar variable propia como coordinador
-            this.usuario = coordinador;
-            
             // Si el coordinador existe, mostrar la interfaz del menú principal
             FrMenuCoords inicioCoords = new FrMenuCoords(this.usuario);
             inicioCoords.setVisible(true);
@@ -261,14 +266,16 @@ public class FrCoords extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
-    private javax.swing.JButton BtnRegresar;
     private javax.swing.JButton btnMostrarContra;
     private javax.swing.JLabel jLabelClick;
     private javax.swing.JPanel jPanelFondoRefe;
     private javax.swing.JPanel jpanelFondoRefe;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblCites;
+    private javax.swing.JLabel lblCiteslogo;
     private javax.swing.JLabel lblContrasenia;
+    private javax.swing.JLabel lblEspirales;
+    private javax.swing.JLabel lblEspiralesFuertes2;
     private javax.swing.JLabel lblNoEmpleado;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JPasswordField passwordField;

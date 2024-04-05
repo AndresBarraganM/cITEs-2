@@ -113,9 +113,10 @@ public class FrMenuCoords extends javax.swing.JFrame {
         //TODO    NOTA 
         //La ventana FrCitasRegistradas es para los alumnos, parece que nos falta una ventana para coordinadores
         
-        //FrCitasRegistradas citasRegistradas = new FrCitasRegistradas();
+        FrCitasCoords citasCoords = new FrCitasCoords();
         
-        //citasRegistradas.setVisible(true);
+        citasCoords.setVisible(true);
+        
         this.dispose();
         
     }//GEN-LAST:event_btnVerCitasActionPerformed

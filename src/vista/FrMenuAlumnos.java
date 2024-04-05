@@ -49,21 +49,22 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanelFondoRef.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelFondoRef.setBackground(new java.awt.Color(155, 179, 232));
         jPanelFondoRef.setForeground(new java.awt.Color(15, 35, 50));
         jPanelFondoRef.setMinimumSize(new java.awt.Dimension(1024, 768));
         jPanelFondoRef.setPreferredSize(new java.awt.Dimension(1024, 768));
         jPanelFondoRef.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jpanelsubfondo.setBackground(new java.awt.Color(255, 255, 255));
         jpanelsubfondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCuenta.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblCuenta.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblCuenta.setText("Ver mi cuenta");
         jpanelsubfondo.add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 510, -1, -1));
 
-        btnCuenta.setBackground(new java.awt.Color(242, 242, 242));
         btnCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/user_84308.png"))); // NOI18N
         btnCuenta.setBorderPainted(false);
+        btnCuenta.setContentAreaFilled(false);
         btnCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,13 +73,13 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
         });
         jpanelsubfondo.add(btnCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 100, 100));
 
-        lblVerCitas.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblVerCitas.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblVerCitas.setText("VER MIS CITAS");
         jpanelsubfondo.add(lblVerCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
 
-        btnVerCitas.setBackground(new java.awt.Color(242, 242, 242));
         btnVerCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/appointment_calendar_tasks_icon_152025.png"))); // NOI18N
         btnVerCitas.setBorderPainted(false);
+        btnVerCitas.setContentAreaFilled(false);
         btnVerCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerCitasActionPerformed(evt);
@@ -86,13 +87,13 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
         });
         jpanelsubfondo.add(btnVerCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, 180, 110));
 
-        lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblBienvenida.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblBienvenida.setText("¡Bienvenido Albatro!");
-        jpanelsubfondo.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        jpanelsubfondo.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
 
-        btnAgendar.setBackground(new java.awt.Color(242, 242, 242));
         btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/quote_request_icon_217006.png"))); // NOI18N
         btnAgendar.setBorderPainted(false);
+        btnAgendar.setContentAreaFilled(false);
         btnAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendarActionPerformed(evt);
@@ -103,10 +104,11 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
         lblCites.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoCites.png"))); // NOI18N
         jpanelsubfondo.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
 
-        lblAgendar.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblAgendar.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblAgendar.setText("AGENDAR UNA CITA");
         jpanelsubfondo.add(lblAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
+        btnRegresar.setFont(new java.awt.Font("Eras Demi ITC", 0, 12)); // NOI18N
         btnRegresar.setText("REGRESAR");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +141,7 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
 
     private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCitasActionPerformed
         // TODO add your handling code here:
-        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas(this.usuario);
+        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas();
         
         //Mostramos la interfaz de Ver Citas
         citasRegistradas.setVisible(true);

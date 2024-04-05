@@ -35,77 +35,77 @@ public class FrAlumnos extends javax.swing.JFrame {
         lblContrasenia = new javax.swing.JLabel();
         txtFieldCorreo = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
         btnMostrarContra = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
         BtnAceptar = new javax.swing.JButton();
-        BtnRegresar = new javax.swing.JButton();
         lblRegistro = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
         jlabelClick = new javax.swing.JLabel();
-        lblCites = new javax.swing.JLabel();
+        lblEspirales = new javax.swing.JLabel();
+        lblEspirales2 = new javax.swing.JLabel();
+        lblLogoITE = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));
+        jpanelFondoRefe.setBackground(new java.awt.Color(155, 179, 232));
         jpanelFondoRefe.setMinimumSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setPreferredSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelFondoRefe.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFondoRefe.setToolTipText("");
         jPanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblContrasenia.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblContrasenia.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
         lblContrasenia.setText("Contraseña:");
-        jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        jPanelFondoRefe.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, 30));
 
+        txtFieldCorreo.setToolTipText("Ingresa tu Correo Institucional");
         txtFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFieldCorreoActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(txtFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 440, 30));
+        jPanelFondoRefe.add(txtFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 270, 30));
 
-        lblCorreo.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblCorreo.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
         lblCorreo.setText("Correo Institucional:");
-        jPanelFondoRefe.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, 30));
-        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 260, 30));
+        jPanelFondoRefe.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 30));
 
         btnMostrarContra.setBackground(new java.awt.Color(242, 242, 242));
         btnMostrarContra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/3844476-eye-see-show-view-watch_110339.png"))); // NOI18N
         btnMostrarContra.setBorderPainted(false);
+        btnMostrarContra.setContentAreaFilled(false);
         btnMostrarContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarContraActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 30, 30));
+        jPanelFondoRefe.add(btnMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 30, 30));
 
-        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnAceptar.setText("ACEPTAR");
+        passwordField.setToolTipText("Ingresa tu Contraseña");
+        jPanelFondoRefe.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 270, 30));
+
+        BtnAceptar.setBackground(new java.awt.Color(155, 179, 232));
+        BtnAceptar.setFont(new java.awt.Font("Eras Demi ITC", 0, 18)); // NOI18N
+        BtnAceptar.setText("Iniciar Sesión");
+        BtnAceptar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255)));
         BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAceptarActionPerformed(evt);
             }
         });
-        jPanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 150, 50));
-
-        BtnRegresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnRegresar.setText("REGRESAR");
-        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRegresarActionPerformed(evt);
-            }
-        });
-        jPanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 150, 50));
+        jPanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 150, 40));
 
         lblRegistro.setText("¿No estas registrado? Registrate Aqui ");
-        jPanelFondoRefe.add(lblRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, -1, 30));
+        jPanelFondoRefe.add(lblRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, -1, 30));
 
         lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
         lblBienvenida.setText("¡BIENVENIDO ALBATRO!");
-        jPanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
+        jPanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         jlabelClick.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlabelClick.setForeground(new java.awt.Color(102, 102, 255));
@@ -115,13 +115,18 @@ public class FrAlumnos extends javax.swing.JFrame {
                 jlabelClickMouseClicked(evt);
             }
         });
-        jPanelFondoRefe.add(jlabelClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 110, 30));
+        jPanelFondoRefe.add(jlabelClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 110, 30));
 
-        jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 860, 560));
+        jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 560, 770));
 
-        lblCites.setFont(new java.awt.Font("Eras Bold ITC", 0, 48)); // NOI18N
-        lblCites.setText("cITEs");
-        jpanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
+        lblEspirales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Espirales.png"))); // NOI18N
+        jpanelFondoRefe.add(lblEspirales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 564, 210, 200));
+
+        lblEspirales2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Espirales2.png"))); // NOI18N
+        jpanelFondoRefe.add(lblEspirales2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, -20, 240, 190));
+
+        lblLogoITE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo-ensenada.png"))); // NOI18N
+        jpanelFondoRefe.add(lblLogoITE, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
 
         getContentPane().add(jpanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 770));
 
@@ -169,17 +174,6 @@ public class FrAlumnos extends javax.swing.JFrame {
         }
  } 
                                               
-
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
-        // TODO add your handling code here:
-        FrMenuPrincipal inicio = new FrMenuPrincipal();
-        
-        //Mostramos la interfaz del menu principal
-        inicio.setVisible(true);
-        
-        //Para que se cierre la ventana 
-        this.dispose();
-    }//GEN-LAST:event_BtnRegresarActionPerformed
     
     private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
  
@@ -251,15 +245,16 @@ public class FrAlumnos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAceptar;
-    private javax.swing.JButton BtnRegresar;
     private javax.swing.JButton btnMostrarContra;
     private javax.swing.JPanel jPanelFondoRefe;
     private javax.swing.JLabel jlabelClick;
     private javax.swing.JPanel jpanelFondoRefe;
     private javax.swing.JLabel lblBienvenida;
-    private javax.swing.JLabel lblCites;
     private javax.swing.JLabel lblContrasenia;
     private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblEspirales;
+    private javax.swing.JLabel lblEspirales2;
+    private javax.swing.JLabel lblLogoITE;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField txtFieldCorreo;
