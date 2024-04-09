@@ -20,7 +20,6 @@ public class FrCoords extends javax.swing.JFrame {
      * Creates new form FrAlumnos
      */
     public FrCoords() {
-        this.usuario = usuario;
         initComponents();
     }
 
@@ -45,8 +44,6 @@ public class FrCoords extends javax.swing.JFrame {
         lblBienvenida = new javax.swing.JLabel();
         jLabelClick = new javax.swing.JLabel();
         lblCites = new javax.swing.JLabel();
-        lblEspirales = new javax.swing.JLabel();
-        lblEspiralesFuertes2 = new javax.swing.JLabel();
         lblCiteslogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -129,12 +126,6 @@ public class FrCoords extends javax.swing.JFrame {
 
         jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 610, 770));
 
-        lblEspirales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/EspiralesFuertes.png"))); // NOI18N
-        jpanelFondoRefe.add(lblEspirales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, -1, -1));
-
-        lblEspiralesFuertes2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/EspiralesFuertes2.png"))); // NOI18N
-        jpanelFondoRefe.add(lblEspiralesFuertes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
-
         lblCiteslogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logoCites.png"))); // NOI18N
         jpanelFondoRefe.add(lblCiteslogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
@@ -190,6 +181,7 @@ public class FrCoords extends javax.swing.JFrame {
 
         // Verificar si se encontró un alumno con las credenciales proporcionadas
         if (coordinador.getId() != null) {
+            this.usuario =  coordinador;
             // Si el coordinador existe, mostrar la interfaz del menú principal
             FrMenuCoords inicioCoords = new FrMenuCoords(this.usuario);
             inicioCoords.setVisible(true);
@@ -274,8 +266,6 @@ public class FrCoords extends javax.swing.JFrame {
     private javax.swing.JLabel lblCites;
     private javax.swing.JLabel lblCiteslogo;
     private javax.swing.JLabel lblContrasenia;
-    private javax.swing.JLabel lblEspirales;
-    private javax.swing.JLabel lblEspiralesFuertes2;
     private javax.swing.JLabel lblNoEmpleado;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JPasswordField passwordField;

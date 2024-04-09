@@ -41,8 +41,6 @@ public class FrAlumnos extends javax.swing.JFrame {
         lblRegistro = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
         jlabelClick = new javax.swing.JLabel();
-        lblEspirales = new javax.swing.JLabel();
-        lblEspirales2 = new javax.swing.JLabel();
         lblLogoITE = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,12 +116,6 @@ public class FrAlumnos extends javax.swing.JFrame {
         jPanelFondoRefe.add(jlabelClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 110, 30));
 
         jpanelFondoRefe.add(jPanelFondoRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 560, 770));
-
-        lblEspirales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Espirales.png"))); // NOI18N
-        jpanelFondoRefe.add(lblEspirales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 564, 210, 200));
-
-        lblEspirales2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Espirales2.png"))); // NOI18N
-        jpanelFondoRefe.add(lblEspirales2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, -20, 240, 190));
 
         lblLogoITE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo-ensenada.png"))); // NOI18N
         jpanelFondoRefe.add(lblLogoITE, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, -1, -1));
@@ -252,8 +244,6 @@ public class FrAlumnos extends javax.swing.JFrame {
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblContrasenia;
     private javax.swing.JLabel lblCorreo;
-    private javax.swing.JLabel lblEspirales;
-    private javax.swing.JLabel lblEspirales2;
     private javax.swing.JLabel lblLogoITE;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JPasswordField passwordField;

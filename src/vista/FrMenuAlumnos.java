@@ -130,7 +130,7 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
 
     private void btnCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuentaActionPerformed
         // TODO add your handling code here:
-        FrPerfilUsuario Usuario = new FrPerfilUsuario(this.usuario);
+        FrPerfilAlumno Usuario = new FrPerfilAlumno(this.usuario);
         
         //Mostramos la interfaz de ver mi usuario
         Usuario.setVisible(true);
@@ -141,7 +141,7 @@ public class FrMenuAlumnos extends javax.swing.JFrame {
 
     private void btnVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCitasActionPerformed
         // TODO add your handling code here:
-        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas();
+        FrCitasRegistradas citasRegistradas = new FrCitasRegistradas(this.usuario);
         
         //Mostramos la interfaz de Ver Citas
         citasRegistradas.setVisible(true);

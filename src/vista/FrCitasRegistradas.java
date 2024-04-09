@@ -7,6 +7,7 @@ package vista;
 import cites.Alumno;
 import javax.swing.table.DefaultTableModel;
 import database.SqlCitas;
+import vista.FrMenuAlumnos;
 
 /**
  *
@@ -39,7 +40,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         lblCites = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
         BtnRegresar = new javax.swing.JButton();
-        BtnAceptar = new javax.swing.JButton();
+        BtnMostrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -47,7 +48,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));
+        jpanelFondoRefe.setBackground(new java.awt.Color(155, 179, 232));
         jpanelFondoRefe.setMinimumSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setPreferredSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -56,11 +57,11 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         lblCites.setText("cITEs");
         jpanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
 
-        lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblBienvenida.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblBienvenida.setText("Citas registradas");
         jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
 
-        BtnRegresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnRegresar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnRegresar.setText("REGRESAR");
         BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,30 +70,24 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         });
         jpanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 150, 50));
 
-        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnAceptar.setText("ACEPTAR");
-        BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        BtnMostrar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
+        BtnMostrar.setText("ACEPTAR");
+        BtnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAceptarActionPerformed(evt);
+                BtnMostrarActionPerformed(evt);
             }
         });
-        jpanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
+        jpanelFondoRefe.add(BtnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                //Lo cambie a null
             },
             new String [] {
-                "Nombre", "ID", "Coordinacion", "Horario", "Fecha", "Estado", "Motivo"
+                "Nombre", "ID", "No. de Control", "Carrera", "Horario"
             }
         ));
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
         jpanelFondoRefe.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 860, 470));
@@ -155,15 +150,17 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Alumno alumno = new Alumno();
                 new FrCitasRegistradas(alumno).setVisible(true);
             }
-        });
+         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAceptar;
+    private javax.swing.JButton BtnMostrar;
     private javax.swing.JButton BtnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
