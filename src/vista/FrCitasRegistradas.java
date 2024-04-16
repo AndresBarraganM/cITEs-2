@@ -71,7 +71,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
         jpanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 150, 50));
 
         BtnMostrar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        BtnMostrar.setText("ACEPTAR");
+        BtnMostrar.setText("MOSTRAR");
         BtnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnMostrarActionPerformed(evt);
@@ -84,7 +84,7 @@ public class FrCitasRegistradas extends javax.swing.JFrame {
                 //Lo cambie a null
             },
             new String [] {
-                "Nombre", "ID", "No. de Control", "Carrera", "Horario"
+                "Nombre del coordinador", "ID_Cita", "Coordinacion", "Estado", "Motivo", "Hora", "Fecha"
             }
         ));
         jTable1.setEnabled(false);
