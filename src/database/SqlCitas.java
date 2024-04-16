@@ -139,11 +139,10 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 motivo = RS.getString(5);
                 
                 horaSinFormato = RS.getInt(4);
-                
-                horaFormateada = 
-                        String.valueOf(round(horaSinFormato /100))
-                        +":"+
-                        String.valueOf(horaSinFormato %100);
+                String horaSinFormatoStr = String.format("%04d", horaSinFormato);
+                horaFormateada = String.format("%s:%s",
+                                                horaSinFormatoStr.substring(0, 2),  // Las primeras dos cifras son las horas
+                                                horaSinFormatoStr.substring(2));  
 
                 dia = RS.getInt(8);
                 mes = RS.getInt(9);
@@ -226,10 +225,12 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 
                 horaMilitar = RS.getInt(4);
                 
-                horaFormateada = 
-                        String.valueOf(round(horaMilitar /100))
-                        +":"+
-                        String.valueOf(horaMilitar %100);
+                String horaMilitarStr = String.format("%04d", horaMilitar);
+
+                horaFormateada = String.format("%s:%s",
+                        horaMilitarStr.substring(0, 2),  // Las primeras dos cifras son las horas
+                        horaMilitarStr.substring(2));  
+
 
                 dia = RS.getInt(8);
                 mes = RS.getInt(9);
