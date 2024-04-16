@@ -28,7 +28,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
         DT.addColumn("ID_Cita");
         DT.addColumn("Coordinacion"); // Nombre del coordinador
         DT.addColumn("Estado");
-        DT.addColumn("motivo");
+        DT.addColumn("Motivo");
         
         DT.addColumn("Hora"); //se cambiara de HHMM a HH:MM
         
@@ -75,10 +75,10 @@ public class SqlCitas extends SqlConector { //TODO Por probar
             PS.setString(2, citadorDocente);
             PS.setInt(3,hora);
             PS.setString(4,motivo);
-            PS.setInt(5,anio);
-            PS.setString(6, estado);
-            PS.setInt(7, dia);
-            PS.setInt(8,mes);
+            PS.setString(5,estado);
+            PS.setInt(6, dia);
+            PS.setInt(7, mes);
+            PS.setInt(8,anio);
             
             PS.executeUpdate();
             
@@ -95,7 +95,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
         //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
         Cita citaAlumno = new Cita();
         String sqlSelect = "SELECT * FROM Citas WHERE citadorID = (?)";
-        
+        String motivo = "";
                     
         //Variables que usare
         int horaSinFormato = 0;
@@ -135,6 +135,9 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 cord = DbCoord.consultarCoordinadorPorId(String.valueOf(coordinadorID));
                 
                 //Cambiar formatos de hora y fecha
+                
+                motivo = RS.getString(5);
+                
                 horaSinFormato = RS.getInt(4);
                 
                 horaFormateada = 
@@ -157,16 +160,18 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 fila[2] = cord.getCargo(); //cargo del coordinador
                 fila[3] = RS.getString(7); //Estado
                 
-                fila[4] = horaFormateada; //Hora
+                fila[4] = motivo; //Motivo
                 
-                fila[5] = fechaParseada; //Fecha
+                fila[5] = horaFormateada; //Hora
+                
+                fila[6] = fechaParseada; //Fecha
                 DT.addRow(fila);
             }
             
             
         } catch(Exception e){
             if (e.getMessage().equals("No cita encontrada")){
-                System.out.println("No cita encontrada ocn estos parametros");
+                System.out.println("No cita encontrada con estos parametros");
             } else{
                 System.err.println("Error al consultar citas: "+e);
             } 
