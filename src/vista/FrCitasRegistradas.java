@@ -16,6 +16,15 @@ import vista.FrMenuAlumnos;
 public class FrCitasRegistradas extends javax.swing.JFrame {
     Alumno usuario;
     private SqlCitas sqlCitas;
+    
+     public FrCitasRegistradas() {
+        this.usuario = usuario;
+        initComponents();
+        SqlCitas sqlCitas = new SqlCitas();
+        DefaultTableModel modeloTabla = sqlCitas.setTableForCoordinador();
+        jTable1.setModel(modeloTabla);
+    }
+
 
     /**
      * Creates new form FrAlumnos
