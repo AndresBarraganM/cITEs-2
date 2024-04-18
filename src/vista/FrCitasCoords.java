@@ -6,6 +6,7 @@ package vista;
 import cites.Coordinador;
 import database.SqlCitas;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author PC
@@ -16,9 +17,10 @@ public class FrCitasCoords extends javax.swing.JFrame {
 
     /**
      * Creates new form FrAlumnos
+     * @param admin
      */
-    public FrCitasCoords() {
-        this.Administrador = Administrador;
+    public FrCitasCoords(Coordinador admin) {
+        this.Administrador = admin;
         initComponents();
         SqlCitas sqlCitas = new SqlCitas();
         DefaultTableModel modeloTabla = sqlCitas.setTableForCoordinador();
@@ -38,27 +40,29 @@ public class FrCitasCoords extends javax.swing.JFrame {
         lblCites = new javax.swing.JLabel();
         lblBienvenida = new javax.swing.JLabel();
         BtnRegresar = new javax.swing.JButton();
-        BtnAceptar = new javax.swing.JButton();
+        BtnMostrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jpanelFondoRefe.setBackground(new java.awt.Color(153, 204, 255));
+        jpanelFondoRefe.setBackground(new java.awt.Color(15, 35, 50));
         jpanelFondoRefe.setMinimumSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setPreferredSize(new java.awt.Dimension(1024, 768));
         jpanelFondoRefe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCites.setFont(new java.awt.Font("Eras Bold ITC", 0, 48)); // NOI18N
+        lblCites.setForeground(new java.awt.Color(255, 255, 255));
         lblCites.setText("cITEs");
-        jpanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
+        jpanelFondoRefe.add(lblCites, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
-        lblBienvenida.setFont(new java.awt.Font("Eras Bold ITC", 0, 24)); // NOI18N
+        lblBienvenida.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
+        lblBienvenida.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenida.setText("Citas registradas");
-        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, -1, -1));
+        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
 
-        BtnRegresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        BtnRegresar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnRegresar.setText("REGRESAR");
         BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,30 +71,30 @@ public class FrCitasCoords extends javax.swing.JFrame {
         });
         jpanelFondoRefe.add(BtnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 630, 150, 50));
 
-        BtnAceptar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        BtnAceptar.setText("ACEPTAR");
-        BtnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        BtnMostrar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
+        BtnMostrar.setText("MOSTRAR");
+        BtnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAceptarActionPerformed(evt);
+                BtnMostrarActionPerformed(evt);
             }
         });
-        jpanelFondoRefe.add(BtnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
+        jpanelFondoRefe.add(BtnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 630, 150, 50));
 
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre del alumno", "ID. Cita", "Estado", "Motivo", "Hora", "Fecha", "Correo"
+                "ID. Alumno", "ID. Cita", "Estado", "Motivo", "Hora", "Fecha"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -113,17 +117,31 @@ public class FrCitasCoords extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnRegresarActionPerformed
 
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
+    private void BtnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarActionPerformed
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords(this.Administrador);
-
-        //Mostramos la interfaz del menu principal
-        menuCoords.setVisible(true);
-
-        //Para que se cierre la ventana 
-        this.dispose();
-    }//GEN-LAST:event_BtnAceptarActionPerformed
-
+        mostrarCitasAceptadasPorCoordinador();
+    }//GEN-LAST:event_BtnMostrarActionPerformed
+    
+    private void mostrarCitasAceptadasPorCoordinador() {
+    if (Administrador != null) {
+        String idCoordinador = Administrador.getId(); // Obtener el ID del coordinador
+        
+        char estadoChar = 'c'; // Cambia 'c' por el estado correcto que necesites
+        
+        SqlCitas sqlCitas = new SqlCitas();
+        DefaultTableModel tableModel = sqlCitas.consultarCitasPorCoordinadorAceptadas(idCoordinador, estadoChar);
+        
+        // Verificar si se obtuvo un modelo de tabla válido
+        if (tableModel != null) {
+            System.out.println(tableModel);
+            jTable1.setModel(tableModel);
+        } else {
+            // Mostrar mensaje si no se encontraron citas
+            JOptionPane.showMessageDialog(null, "No se encontraron citas aceptadas para este coordinador", "Sin Citas", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -155,13 +173,14 @@ public class FrCitasCoords extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrCitasCoords().setVisible(true);
+                Coordinador admin = new Coordinador();
+                new FrCitasCoords(admin).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAceptar;
+    private javax.swing.JButton BtnMostrar;
     private javax.swing.JButton BtnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
