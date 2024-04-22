@@ -38,11 +38,22 @@ public class SqlCitas extends SqlConector { //TODO Por probar
     
     public DefaultTableModel setTableForCoordinador(){
         DT = new DefaultTableModel();
-        DT.addColumn("ID. Alumno");
+        DT.addColumn("Nombre del Alumno");
         DT.addColumn("ID. Cita");
         DT.addColumn("Estado");
         DT.addColumn("Motivo");
         DT.addColumn("Fecha");
+        DT.addColumn("Hora");
+        
+        return DT;
+    }
+
+    public DefaultTableModel setTableForCoordinadorPendiente(){
+        DT = new DefaultTableModel();
+        DT.addColumn("Nombre del Alumno");
+        DT.addColumn("ID. Cita");
+        DT.addColumn("Motivo");
+        DT.addColumn("Carrera");
         DT.addColumn("Hora");
         
         return DT;
@@ -138,6 +149,24 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 //Cambiar formatos de hora y fecha
                 
                 motivo = RS.getString(5);
+            String estado = RS.getString(7);
+            String estadoMostrado = "";
+
+            // Asignar estado mostrado según el valor del estado recuperado
+            switch (estado) {
+                case "p":
+                    estadoMostrado = "pendiente";
+                    break;
+                case "c":
+                    estadoMostrado = "confirmada";
+                    break;
+                case "d":
+                    estadoMostrado = "denegada";
+                    break;
+                default:
+                    estadoMostrado = estado; // Otros estados se muestran como están
+                    break;
+            }
                 
                 horaSinFormato = RS.getInt(4);
                 String horaSinFormatoStr = String.format("%04d", horaSinFormato);
@@ -158,7 +187,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 fila[1] = RS.getInt(1); //ID de la cita
                 
                 fila[2] = cord.getCargo(); //cargo del coordinador
-                fila[3] = RS.getString(7); //Estado
+                fila[3] = estadoMostrado; //Estado
                 
                 fila[4] = motivo; //Motivo
                 
@@ -182,7 +211,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
     } 
     
 
-     public DefaultTableModel consultarCitasPorCoordinador(String idCoordinador){
+     public DefaultTableModel consultarCitasPorCoordinador(String idCoordinador, char estado){
         //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
         Cita citaCoord= new Cita();
         String sqlSelect = "SELECT * FROM Citas WHERE coordinadorID = ? AND estado = 'p'";
@@ -191,7 +220,6 @@ public class SqlCitas extends SqlConector { //TODO Por probar
         Alumno alumn;
         
         String nombre = "";
-        String id = "";
         String motivo = "";
 
         int horaMilitar = 0;
@@ -207,7 +235,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
             this.conectar();
             PreparedStatement PS = this.getConnection().prepareStatement(sqlSelect);
             PS.setString(1,idCoordinador);
-            this.DT = setTableForCoordinador();
+            this.DT = setTableForCoordinadorPendiente();
             
             RS = PS.executeQuery();
             
@@ -242,8 +270,8 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                         +"/"+ String.valueOf(anio);
                 
                 //Asigran la variable
-                fila[0] = nombre; //Nombre
-                fila[1] = id; //id
+                fila[0] = nombre; // Nombre
+                fila[1] = RS.getInt(1); // Id.Cita
                 fila[2] = motivo; //Motivo
                 fila[3] = fechaFormateada; //Fecha
                 fila[4] = horaFormateada; //Hora
@@ -265,7 +293,9 @@ public class SqlCitas extends SqlConector { //TODO Por probar
     public DefaultTableModel consultarCitasPorCoordinadorAceptadas(String idCoordinador, char estado){
         //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
         String sqlSelect = "SELECT * FROM Citas WHERE coordinadorID = ? AND estado = ?";
-
+        SqlAlumno alumnCon = new SqlAlumno();
+        Alumno alumn;        
+        String nombre = "";
         try {
             this.conectar();
             PreparedStatement PS = this.getConnection().prepareStatement(sqlSelect);
@@ -283,6 +313,8 @@ public class SqlCitas extends SqlConector { //TODO Por probar
             while (RS.next()) {
                 // Formateo de la hora
                 int horaMilitar = RS.getInt(4);
+                alumn = alumnCon.consultarAlumnoPorId(3);
+                nombre = alumn.getNombreCompleto();
                 String horaMilitarStr = String.format("%04d", horaMilitar);
                 String horaFormateada = String.format("%s:%s",
                         horaMilitarStr.substring(0, 2), // Las primeras dos cifras son las horas
@@ -294,7 +326,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
                 int anio = RS.getInt(6);
                 String fechaFormateada = String.format("%02d/%02d/%d", dia, mes, anio);
 
-                fila[0] = RS.getInt(3);     // Id.Alumno
+                fila[0] = nombre;     // nombre del alumno
                 fila[1] = RS.getInt(1);     // Id.Cita
                 fila[2] = RS.getString(7);  // Estado
                 fila[3] = RS.getString(5);  // Motivo
