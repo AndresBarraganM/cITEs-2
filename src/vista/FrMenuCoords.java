@@ -123,7 +123,7 @@ public class FrMenuCoords extends javax.swing.JFrame {
 
     private void btnCitasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasPendientesActionPerformed
         // TODO add your handling code here:
-        FrCitasPendientes citasPendientes = new FrCitasPendientes();
+        FrCitasPendientes citasPendientes = new FrCitasPendientes(this.usuario);
         
         //Mostramos la interfaz de Ver Citas
         citasPendientes.setVisible(true);

@@ -5,6 +5,8 @@
 package vista;
 
 import cites.Coordinador;
+import database.SqlCitas;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,10 +18,12 @@ public class FrCitasPendientes extends javax.swing.JFrame {
 
     /**
      * Creates new form FrAlumnos
+     * @param usuario
      */
-    public FrCitasPendientes() {
+    public FrCitasPendientes(Coordinador usuario) {
         this.usuario = usuario;
         initComponents();
+        mostrarCitasPendientes(); // Verifica si se llama correctamente a este método
     }
 
     /**
@@ -58,7 +62,7 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         lblBienvenida.setFont(new java.awt.Font("Eras Demi ITC", 0, 24)); // NOI18N
         lblBienvenida.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenida.setText("Citas pendientes");
-        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 210, -1));
+        jpanelFondoRefe.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 210, -1));
 
         BtnRegresar.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
         BtnRegresar.setText("REGRESAR");
@@ -80,22 +84,14 @@ public class FrCitasPendientes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null,  new Boolean(false)},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "ID", "No. de Control", "Carrera", "Horario", "Cita"
+                "Nombre del alumno", "ID. Cita", "Motivo", "Carrera", "Hora"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jpanelFondoRefe.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 740, 380));
@@ -123,6 +119,30 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mostrarCitasPendientes(){
+        System.out.println("Mostrando citas pendientes...");
+
+        // Coloca puntos de interrupción aquí para depurar el código
+        if (usuario != null) {
+            String idCoordinador = usuario.getId(); // Verifica el ID del coordinador
+
+            char estadoChar = 'p'; // Asegúrate de utilizar el estado correcto
+
+            SqlCitas sqlCitas = new SqlCitas();
+            DefaultTableModel tableModel = sqlCitas.consultarCitasPorCoordinador(idCoordinador, estadoChar);
+
+            if (tableModel != null) {
+                System.out.println("Se obtuvo un modelo de tabla válido");
+                jTable1.setModel(tableModel); // Asigna el modelo a la tabla
+            } else {
+                System.out.println("No se encontraron citas pendientes");
+                JOptionPane.showMessageDialog(null, "No se encontraron citas pendientes para este coordinador", "Sin Citas", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            System.out.println("El objeto Coordinador es nulo");
+        }
+    }
+    
     private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
         // TODO add your handling code here:
         FrMenuPrincipal inicio = new FrMenuPrincipal();
@@ -195,7 +215,8 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrCitasPendientes().setVisible(true);
+                Coordinador cord = new Coordinador();
+                new FrCitasPendientes(cord).setVisible(true);
             }
         });
     }
