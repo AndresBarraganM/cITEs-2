@@ -164,12 +164,20 @@ public class FrCitasPendientes extends javax.swing.JFrame {
     
     private void BtnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarActionPerformed
         // TODO add your handling code here:
-        int[] selectedRows = jTable1.getSelectedRows();
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                for (int i = selectedRows.length - 1; i >= 0; i--) {
-                    model.removeRow(selectedRows[i]);
+            int[] selectedRows = jTable1.getSelectedRows();
+            SqlCitas sqlCitas = new SqlCitas();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            // Iterar sobre las filas seleccionadas para eliminar de la tabla y de la base de datos
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                int idCita = (int) model.getValueAt(selectedRows[i], 1); // Obtener el ID de la cita desde la segunda columna (ID. Cita)
+                model.removeRow(selectedRows[i]); // Eliminar la fila de la tabla visual
+
+                // Llamar al método eliminarCita para eliminar la cita de la base de datos
+                sqlCitas.eliminarCita(idCita);
+            }
     }//GEN-LAST:event_BtnBorrarActionPerformed
-    }
+
     
     private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
         // TODO add your handling code here:

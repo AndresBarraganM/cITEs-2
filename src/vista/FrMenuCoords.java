@@ -15,6 +15,7 @@ public class FrMenuCoords extends javax.swing.JFrame {
     
     /**
      * Creates new form Inicio
+     * @param usuario
      */
     public FrMenuCoords(Coordinador usuario) {
         this.usuario = usuario;
