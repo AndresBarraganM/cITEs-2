@@ -101,7 +101,27 @@ public class SqlCitas extends SqlConector { //TODO Por probar
         }
     }
 
+    public void eliminarCita(int idCita) {
+        String sqlDelete = "DELETE FROM citas WHERE idCitas = ?";
 
+        try {
+            this.conectar();
+            PreparedStatement PS = this.getConnection().prepareStatement(sqlDelete);
+            PS.setInt(1, idCita);
+
+            int rowsAffected = PS.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Cita eliminada exitosamente.");
+            } else {
+                System.out.println("No se encontró la cita con el ID proporcionado.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar cita: " + e.getMessage());
+        } finally {
+            this.desconectar();
+        }
+    }
     
     public DefaultTableModel consultarCitasPorAlumno(String idAlumno){
         //Codigo de: https://www.youtube.com/watch?v=dSn4ZORiqpY
@@ -328,7 +348,7 @@ public class SqlCitas extends SqlConector { //TODO Por probar
 
                 fila[0] = nombre;     // nombre del alumno
                 fila[1] = RS.getInt(1);     // Id.Cita
-                fila[2] = RS.getString(7);  // Estado
+                fila[2] = (estado == 'c') ? "confirmada" : RS.getString(7);  // Estado
                 fila[3] = RS.getString(5);  // Motivo
                 fila[4] = fechaFormateada;  // Fecha formateada
                 fila[5] = horaFormateada;   // Hora formateada
