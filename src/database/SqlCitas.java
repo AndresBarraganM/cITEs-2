@@ -68,16 +68,25 @@ public class SqlCitas extends SqlConector { //TODO Por probar
         
         int hora = cita.getHora();
         
-        String citadorId = cita.getCitadorId();
-        String citadorDocente = cita.getCitadorDocente();
+        String citadorId = cita.getCitadorDocente();
+        String citadorDocente = cita.getCitadorId();
         String motivo = cita.getMotivo();
         String estado = cita.getEstado();
+        
+        System.out.println("Citador ID: " + citadorId);
+        System.out.println("Coordinador ID: " + citadorDocente);
+        System.out.println("Hora: " + hora);
+        System.out.println("Motivo: " + motivo);
+        System.out.println("Año: " + anio);
+        System.out.println("Estado: " + estado);
+        System.out.println("Día: " + dia);
+        System.out.println("Mes: " + mes);
         
         String sqlInsert= "INSERT INTO citas"
                 + "(citadorID, coordinadorID, hora, motivo, anio, estado, dia, mes)"
                 + "values (?,?,?,?,?,?,?,?)";
         
-        
+     
         try{
             this.conectar();
                     this.DT = this.setTableForAlumno();
@@ -87,10 +96,10 @@ public class SqlCitas extends SqlConector { //TODO Por probar
             PS.setString(2, citadorDocente);
             PS.setInt(3,hora);
             PS.setString(4,motivo);
-            PS.setString(5,estado);
-            PS.setInt(6, dia);
-            PS.setInt(7, mes);
-            PS.setInt(8,anio);
+            PS.setInt(5,anio);
+            PS.setString(6,estado);
+            PS.setInt(7, dia);
+            PS.setInt(8, mes);
             
             PS.executeUpdate();
             
@@ -266,7 +275,8 @@ public class SqlCitas extends SqlConector { //TODO Por probar
             Object[] fila = new Object[9];
             while(RS.next()){
                 //Obtener datos de alumno relacionado
-                alumn = alumnCon.consultarAlumnoPorId(3);
+                int idAlumno = RS.getInt("citadorID");
+                alumn = alumnCon.consultarAlumnoPorId(idAlumno);
                 
                 nombre = alumn.getNombreCompleto();
                 
@@ -333,7 +343,8 @@ public class SqlCitas extends SqlConector { //TODO Por probar
             while (RS.next()) {
                 // Formateo de la hora
                 int horaMilitar = RS.getInt(4);
-                alumn = alumnCon.consultarAlumnoPorId(3);
+                int idAlumno = RS.getInt("citadorID");
+                alumn = alumnCon.consultarAlumnoPorId(idAlumno);
                 nombre = alumn.getNombreCompleto();
                 String horaMilitarStr = String.format("%04d", horaMilitar);
                 String horaFormateada = String.format("%s:%s",
