@@ -143,26 +143,19 @@ public class FrCitasPendientes extends javax.swing.JFrame {
         }
     }
     
-    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        FrMenuPrincipal inicio = new FrMenuPrincipal();
+        FrMenuCoords menuCoords = new FrMenuCoords(this.usuario);
         
         //Mostramos la interfaz del menu principal
-        inicio.setVisible(true);
+        menuCoords.setVisible(true);
         
         //Para que se cierre la ventana 
         this.dispose();
-    }//GEN-LAST:event_BtnRegresarActionPerformed
-
-    private void BtnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeleccionarActionPerformed
-        // TODO add your handling code here:
-        int[] selectedRows = jTable1.getSelectedRows();
-                for (int i = 0; i < selectedRows.length; i++) {
-                    System.out.println("Fila seleccionada: " + selectedRows[i]);
-    }//GEN-LAST:event_BtnSeleccionarActionPerformed
-    }
+    }                                           
+}
     
-    private void BtnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarActionPerformed
+    private void BtnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
             int[] selectedRows = jTable1.getSelectedRows();
             SqlCitas sqlCitas = new SqlCitas();
@@ -176,19 +169,26 @@ public class FrCitasPendientes extends javax.swing.JFrame {
                 // Llamar al método eliminarCita para eliminar la cita de la base de datos
                 sqlCitas.eliminarCita(idCita);
             }
-    }//GEN-LAST:event_BtnBorrarActionPerformed
-
-    
-    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAceptarActionPerformed
+    }                                         
+    private void BtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        FrMenuCoords menuCoords = new FrMenuCoords(this.usuario);
-        
-        //Mostramos la interfaz del menu principal
-        menuCoords.setVisible(true);
-        
-        //Para que se cierre la ventana 
-        this.dispose();
-    }//GEN-LAST:event_BtnAceptarActionPerformed
+        int[] selectedRows = jTable1.getSelectedRows();
+        SqlCitas sqlCitas = new SqlCitas();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            for (int i = selectedRows.length - 1; i >= 0; i--) {
+                int idCita = (int) model.getValueAt(selectedRows[i], 1); // Obtener el ID de la cita desde la segunda columna (ID. Cita)
+                // Llamar al método de la base de datos para cambiar el estado de la cita a "aceptado"
+                sqlCitas.cambiarEstadoCita(Integer.toString(idCita), 'c'); // 'c' representa el estado "aceptado"
+            }
+        JOptionPane.showMessageDialog(null, "Las citas seleccionadas han sido aceptadas", "Citas Aceptadas", JOptionPane.INFORMATION_MESSAGE);
+    }                                          
+
+    private void BtnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+        int[] selectedRows = jTable1.getSelectedRows();
+        for (int i = 0; i < selectedRows.length; i++) {
+            System.out.println("Fila seleccionada: " + selectedRows[i]);
+    }                            
 
     /**
      * @param args the command line arguments
